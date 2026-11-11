@@ -1,0 +1,120 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Gruppa Payments 1.0.0\n"
+"Language: sk_SK\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+msgid "Active"
+msgstr "Aktívne"
+
+msgid "Cancel"
+msgstr "Zrušiť"
+
+msgid "Cancel this subscription?"
+msgstr "Zrušiť toto predplatné?"
+
+msgid "Canceled"
+msgstr "Zrušené"
+
+msgid "Expired"
+msgstr "Vypršané"
+
+msgid "Failed"
+msgstr "Neúspešné"
+
+msgid "Manage"
+msgstr "Spravovať"
+
+msgid "Monthly"
+msgstr "Mesačne"
+
+msgid "One-off"
+msgstr "Jednorazovo"
+
+msgid "Online payments are not available right now."
+msgstr "Online platby momentálne nie sú dostupné."
+
+msgid "Paid"
+msgstr "Uhradené"
+
+msgid "Paid until"
+msgstr "Uhradené do"
+
+msgid "Past due"
+msgstr "Po splatnosti"
+
+msgid "Pay"
+msgstr "Zaplatiť"
+
+msgid "Pay by card"
+msgstr "Zaplatiť kartou"
+
+msgid "Pay with PayPal"
+msgstr "Zaplatiť cez PayPal"
+
+msgid "Pending"
+msgstr "Čaká na úhradu"
+
+msgid "Price"
+msgstr "Cena"
+
+msgid "Refunded"
+msgstr "Vrátené"
+
+msgid "Status"
+msgstr "Stav"
+
+msgid "Subscription"
+msgstr "Predplatné"
+
+msgid "Thank you, the payment was successful."
+msgstr "Ďakujeme, platba prebehla úspešne."
+
+msgid "Thank you, your subscription is active."
+msgstr "Ďakujeme, vaše predplatné je aktívne."
+
+msgid "The amount to pay is missing."
+msgstr "Chýba suma na úhradu."
+
+msgid "The payment could not be started:"
+msgstr "Platbu sa nepodarilo spustiť:"
+
+msgid "The payment failed. Please try again."
+msgstr "Platba sa nepodarila. Skúste to prosím znova."
+
+msgid "The payment has expired. Please try again."
+msgstr "Platnosť platby vypršala. Skúste to prosím znova."
+
+msgid "The payment link is not valid. Reload the page and try again."
+msgstr "Platobný odkaz nie je platný. Obnovte stránku a skúste to znova."
+
+msgid "The payment of your subscription is overdue."
+msgstr "Platba vášho predplatného je po splatnosti."
+
+msgid "The payment was canceled."
+msgstr "Platba bola zrušená."
+
+msgid "The payment was refunded."
+msgstr "Platba bola vrátená."
+
+msgid "This payment method is not available right now."
+msgstr "Tento spôsob platby momentálne nie je dostupný."
+
+msgid "We are waiting for the payment to be confirmed. This usually takes a moment."
+msgstr "Čakáme na potvrdenie platby. Zvyčajne to trvá len chvíľu."
+
+msgid "Yearly"
+msgstr "Ročne"
+
+msgid "You have no subscriptions."
+msgstr "Nemáte žiadne predplatné."
+
+msgid "month"
+msgstr "mesiac"
+
+msgid "year"
+msgstr "rok"
+

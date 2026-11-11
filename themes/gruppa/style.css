@@ -1,0 +1,468 @@
+/*
+Theme Name: Gruppa
+Theme URI: https://gruppa.cloud
+Author: Gruppa
+Author URI: https://gruppa.cloud
+Description: Clean base theme for Elementor. The theme outputs no elements of its own — header, footer, single, archive and 404 come from Elementor Theme Builder. Full width layout and a Canvas template. Colors, fonts, typography, buttons, forms and the theme CSS are set in Appearance → Customize.
+Version: 1.3.2
+Requires at least: 6.0
+Tested up to: 6.8
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: gruppa
+*/
+
+
+/* ==============================
+   FARBY
+   ============================== */
+
+:root {
+	--gruppa-black: #040506;       /* nadpisy */
+	--gruppa-dark: #00193C;
+	--gruppa-hover: #1234B5;       /* hover, border formulárov pri hoveri */
+	--gruppa-blue: #2952EA;        /* akcent */
+	--gruppa-light-blue: #D5E5FE;
+	--gruppa-light-gray: #F6F7FB;
+	--gruppa-divider: #B0B0C3;     /* oddeľovače, linky, bordery */
+	--gruppa-dark-gray: #575770;   /* text, border formulárov */
+	--gruppa-white: #FFFFFF;
+	--gruppa-focus: 0 0 0 3px rgba(41, 82, 234, 0.15);
+}
+
+
+/* ==============================
+   RESET
+   ============================== */
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 100%;
+	-webkit-text-size-adjust: 100%;
+	text-size-adjust: 100%;
+}
+
+body {
+	margin: 0;
+	font-family: 'Google Sans Flex', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.7;
+	color: var(--gruppa-dark-gray);
+	background: var(--gruppa-white);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+img,
+video {
+	max-width: 100%;
+	height: auto;
+}
+
+
+/* ==============================
+   ZÁKLAD
+   ============================== */
+
+strong,
+b {
+	font-weight: 700;
+}
+
+/* trieda pre tučný text celého widgetu (Elementor → Rozšírené → CSS triedy) */
+.bold,
+.bold p,
+.bold li {
+	font-weight: 700;
+}
+
+
+/* ----- Zoznamy -----
+   Len zoznamy bez triedy (z textového editora).
+   Elementor menu, icon list a pod. majú vlastné triedy,
+   takže ich tieto pravidlá neovplyvnia. */
+
+ul:not([class]),
+ol:not([class]) {
+	margin: 0 0 1em;
+	padding-left: 1.5em;
+}
+
+ul:not([class]) {
+	list-style-type: square;
+}
+
+ul:not([class]) > li,
+ol:not([class]) > li {
+	margin-bottom: 0.25em;
+}
+
+ul:not([class]) > li:last-child,
+ol:not([class]) > li:last-child {
+	margin-bottom: 0;
+}
+
+ul:not([class]) > li::marker,
+ol:not([class]) > li::marker {
+	color: var(--gruppa-blue);
+}
+
+/* vnorený zoznam – bez spodného marginu, odsadenie zhora */
+li > ul:not([class]),
+li > ol:not([class]) {
+	margin: 0.25em 0 0;
+}
+
+
+/* ----- Posledný prvok bez spodného marginu -----
+   Elementor dáva medzery medzi widgetmi sám,
+   margin posledného odstavca by sa k nim pripočítal. */
+
+p:last-child,
+ul:not([class]):last-child,
+ol:not([class]):last-child {
+	margin-bottom: 0;
+}
+
+a {
+	color: var(--gruppa-blue);
+	transition: color 0.2s;
+}
+
+a:hover {
+	color: var(--gruppa-hover);
+}
+
+hr {
+	height: 0;
+	margin: 2rem 0;
+	border: 0;
+	border-top: 1px dashed var(--gruppa-divider);
+}
+
+
+/* ==============================
+   MOBIL (základ, do 767px)
+   ============================== */
+
+/* ----- Layout ----- */
+
+.section {
+	width: 100%;
+	padding-block: 3rem;
+}
+
+.container {
+	width: 100%;
+	max-width: 80rem;
+	margin-inline: auto;
+	padding-inline: 1.5rem;
+}
+
+.row {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+/* ----- Typografia ----- */
+
+h1, h2, h3, h4, h5, h6,
+.big,
+.big .elementor-heading-title {
+	color: var(--gruppa-black);
+}
+
+.big,
+.big .elementor-heading-title {
+	font-size: 2.5rem;
+	font-weight: 800;
+	line-height: 1.1;
+	letter-spacing: -0.03em;
+}
+
+h1 {
+	font-size: 2rem;
+	font-weight: 800;
+	line-height: 1.2;
+	letter-spacing: -0.02em;
+	margin: 0 0 1em;
+}
+
+h2 {
+	font-size: 1.625rem;
+	font-weight: 400;
+	line-height: 1.3;
+	letter-spacing: -0.015em;
+	margin: 0 0 0.75em;
+}
+
+h3 {
+	font-size: 1.375rem;
+	font-weight: 700;
+	line-height: 1.4;
+	letter-spacing: -0.01em;
+	margin: 0 0 0.6em;
+}
+
+h4 {
+	font-size: 1.25rem;
+	font-weight: 400;
+	line-height: 1.5;
+	margin: 0 0 0.6em;
+}
+
+h5 {
+	font-size: 1.125rem;
+	font-weight: 700;
+	line-height: 1.6;
+	margin: 0 0 0.5em;
+}
+
+h6 {
+	font-size: 1rem;
+	font-weight: 600;
+	line-height: 1.7;
+	margin: 0 0 0.5em;
+}
+
+p {
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.7;
+	margin: 0 0 1em;
+}
+
+.small,
+.small p {
+	font-size: 0.875rem;
+	line-height: 1.6;
+}
+
+
+/* ----- Elementor – widget Heading -----
+   Elementor dáva nadpisom vo widgete Heading line-height: 1.
+   Tu im vraciame naše hodnoty.
+   Margin ostáva 0 – medzery medzi widgetmi rieši gap kontajnera. */
+
+h1.elementor-heading-title { line-height: 1.2; }
+h2.elementor-heading-title { line-height: 1.3; }
+h3.elementor-heading-title { line-height: 1.4; }
+h4.elementor-heading-title { line-height: 1.5; }
+h5.elementor-heading-title { line-height: 1.6; }
+h6.elementor-heading-title { line-height: 1.7; }
+
+
+/* ==============================
+   TABLET (od 768px)
+   ============================== */
+
+@media (min-width: 768px) {
+
+	.section {
+		padding-block: 4rem;
+	}
+
+	.container {
+		padding-inline: 2rem;
+	}
+
+	.row {
+		flex-direction: row;
+		gap: 2rem;
+	}
+
+	.big,
+	.big .elementor-heading-title {
+		font-size: 3.5rem;
+	}
+
+	h1 { font-size: 2.25rem; }
+	h2 { font-size: 1.875rem; }
+	h3 { font-size: 1.5rem; }
+}
+
+
+/* ==============================
+   DESKTOP (od 1024px)
+   ============================== */
+
+@media (min-width: 1024px) {
+
+	.section {
+		padding-block: 6rem;
+	}
+
+	.container {
+		padding-inline: 3rem;
+	}
+
+	.row {
+		gap: 3rem;
+	}
+
+	.big,
+	.big .elementor-heading-title {
+		font-size: 4.5rem;
+	}
+
+	h1 { font-size: 2.5rem; }
+	h2 { font-size: 2rem; }
+	h3 { font-size: 1.625rem; }
+	h4 { font-size: 1.375rem; }
+}
+
+
+/* ==============================
+   FORMULÁRE – polia
+   ============================== */
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="password"],
+input[type="url"],
+input[type="search"],
+input[type="date"],
+textarea,
+select {
+	border: 1px solid var(--gruppa-dark-gray);
+	color: var(--gruppa-black);
+	transition: border-color 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="tel"]:hover,
+input[type="number"]:hover,
+input[type="password"]:hover,
+input[type="url"]:hover,
+input[type="search"]:hover,
+input[type="date"]:hover,
+textarea:hover,
+select:hover {
+	border-color: var(--gruppa-hover);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="number"]:focus,
+input[type="password"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="date"]:focus,
+textarea:focus,
+select:focus {
+	outline: none;
+	border-color: var(--gruppa-blue);
+	color: var(--gruppa-black);
+	box-shadow: var(--gruppa-focus);
+}
+
+
+/* ==============================
+   SELECT – vlastná šípka
+   ============================== */
+
+/* Farba šípky je priamo v SVG (stroke='%23575770' = #575770).
+   CSS premenné sa v data URI použiť nedajú. */
+
+select {
+	appearance: none;
+	padding-right: 2.75rem;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23575770' stroke-width='2'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: right 1rem center;
+	background-size: 12px 8px;
+	cursor: pointer;
+}
+
+
+/* ==============================
+   SWITCHER (JetFormBuilder)
+   ============================== */
+
+.field-type-switcher input.jet-form-builder__field {
+	appearance: none !important;
+	position: relative !important;
+	width: 3.5em !important;
+	height: 2em !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	border: 0 !important;
+	border-radius: 2em !important;
+	background-color: var(--gruppa-divider) !important;
+	box-shadow: none !important;
+	cursor: pointer;
+	transition: background-color 0.2s;
+}
+
+.field-type-switcher input.jet-form-builder__field:checked {
+	background-color: var(--gruppa-blue) !important;
+}
+
+.field-type-switcher input.jet-form-builder__field:focus-visible {
+	box-shadow: var(--gruppa-focus) !important;
+}
+
+.field-type-switcher input.jet-form-builder__field::before {
+	content: "" !important;
+	position: absolute !important;
+	top: 50% !important;
+	left: 0.375em !important;
+	width: 1.125em !important;
+	height: 1.125em !important;
+	margin: 0 !important;
+	border-radius: 50% !important;
+	background-color: var(--gruppa-white) !important;
+	box-shadow: none !important;
+	transform: translateY(-50%) !important;
+	transition: left 0.2s !important;
+}
+
+.field-type-switcher input.jet-form-builder__field:checked::before {
+	left: 2em !important; /* 3.5 − 1.125 − 0.375 = rovnaká medzera vľavo aj vpravo */
+}
+
+
+/* ==============================
+   POMOCNÉ TRIEDY
+   ============================== */
+
+.icon {
+	line-height: 0;
+}
+
+.grecaptcha-badge {
+	visibility: hidden;
+}
+
+.screen-reader-text {
+	position: absolute !important;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+}
+
+.screen-reader-text:focus {
+	top: 0.5rem;
+	left: 0.5rem;
+	z-index: 100000;
+	width: auto;
+	height: auto;
+	padding: 0.75rem 1rem;
+	clip: auto;
+	background: var(--gruppa-white);
+	box-shadow: var(--gruppa-focus);
+}

@@ -1,0 +1,17 @@
+/* Gruppa Payments — website. Colours follow the theme; override freely. */
+.gruppa-pay{display:flex;flex-wrap:wrap;gap:.75rem;margin:1rem 0}
+.gruppa-pay-button{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.75rem 1.5rem;border:0;border-radius:6px;background:var(--gruppa-pay-bg,#6D4AFF);color:var(--gruppa-pay-color,#fff);font:inherit;font-weight:600;cursor:pointer;transition:background .15s}
+.gruppa-pay-button:hover,.gruppa-pay-button:focus-visible{background:var(--gruppa-pay-hover,#4A2DC5)}
+.gruppa-pay-button--paypal{background:#FFC439;color:#111}
+.gruppa-pay-button--paypal:hover,.gruppa-pay-button--paypal:focus-visible{background:#F2BA36}
+.gruppa-pay-result{margin:0 0 1.5rem;padding:1rem 1.25rem;border:1px solid currentColor;border-radius:12px}
+.gruppa-pay-result p{margin:0}
+.gruppa-pay-result p+p{margin-top:.25rem;opacity:.8}
+.gruppa-pay-result--ok{color:#1a7f37}
+.gruppa-pay-result--wait{color:#9a6700}
+.gruppa-pay-result--error{color:#b42318}
+.gruppa-pay-subs{width:100%;border-collapse:collapse}
+.gruppa-pay-subs th,.gruppa-pay-subs td{padding:.5rem;border-bottom:1px solid #E5E7EB;text-align:left}
+.gruppa-pay-subs form{margin:0}
+.gruppa-pay-link{padding:0;border:0;background:none;color:inherit;text-decoration:underline;cursor:pointer;font:inherit}
+.gruppa-pay-note{opacity:.8}

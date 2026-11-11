@@ -1,0 +1,234 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Gruppa CMS\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+#, php-format
+msgid "%1$s: file type not allowed (%2$s)"
+msgstr ""
+
+#, php-format
+msgid "%1$s: max %2$s"
+msgstr ""
+
+#, php-format
+msgid "%1$s: max %2$s MB"
+msgstr ""
+
+#, php-format
+msgid "%1$s: max %2$s characters"
+msgstr ""
+
+#, php-format
+msgid "%1$s: max %2$s files"
+msgstr ""
+
+#, php-format
+msgid "%1$s: max %2$s."
+msgstr ""
+
+#, php-format
+msgid "%1$s: min %2$s"
+msgstr ""
+
+#, php-format
+msgid "%s: file type not allowed."
+msgstr ""
+
+#, php-format
+msgid "%s: invalid URL"
+msgstr ""
+
+#, php-format
+msgid "%s: invalid date"
+msgstr ""
+
+#, php-format
+msgid "%s: invalid email"
+msgstr ""
+
+#, php-format
+msgid "%s: invalid phone number"
+msgstr ""
+
+#, php-format
+msgid "%s: min 8 characters"
+msgstr ""
+
+#, php-format
+msgid "%s: not a number"
+msgstr ""
+
+#, php-format
+msgid "%s: required"
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "At least 8 characters."
+msgstr ""
+
+msgid "Back to log in"
+msgstr ""
+
+msgid "Choose file"
+msgstr ""
+
+msgid "Choose files"
+msgstr ""
+
+msgid "Create account"
+msgstr ""
+
+msgid "Draft"
+msgstr ""
+
+msgid "Email or username"
+msgstr ""
+
+msgid "Enter a valid email."
+msgstr ""
+
+msgid "Enter your email or username. We will send you a link to set a new password."
+msgstr ""
+
+msgid "Error."
+msgstr ""
+
+msgid "Filter"
+msgstr ""
+
+msgid "Forgot your password?"
+msgstr ""
+
+msgid "Form not found."
+msgstr ""
+
+msgid "From"
+msgstr ""
+
+msgid "If the account exists, we have sent an email with a link to set a new password."
+msgstr ""
+
+msgid "Invalid username."
+msgstr ""
+
+msgid "Item not found."
+msgstr ""
+
+msgid "Listing not found."
+msgstr ""
+
+msgid "Load more"
+msgstr ""
+
+msgid "Log in"
+msgstr ""
+
+msgid "Log out"
+msgstr ""
+
+msgid "Logged in as {user_name}."
+msgstr ""
+
+msgid "Login failed."
+msgstr ""
+
+#, php-format
+msgid "Max %d files."
+msgstr ""
+
+msgid "New password"
+msgstr ""
+
+msgid "No"
+msgstr ""
+
+msgid "No file chosen"
+msgstr ""
+
+msgid "No files chosen"
+msgstr ""
+
+msgid "Nothing found."
+msgstr ""
+
+msgid "Nothing to edit yet."
+msgstr ""
+
+msgid "Password"
+msgstr ""
+
+msgid "Please check the highlighted fields."
+msgstr ""
+
+msgid "Please enter your email or username."
+msgstr ""
+
+msgid "Please fill in both fields."
+msgstr ""
+
+msgid "Please log in to use this form."
+msgstr ""
+
+msgid "Please log in."
+msgstr ""
+
+msgid "Published"
+msgstr ""
+
+msgid "Remember me"
+msgstr ""
+
+msgid "Request failed. Please try again."
+msgstr ""
+
+msgid "Required"
+msgstr ""
+
+msgid "Reset filters"
+msgstr ""
+
+msgid "Save password"
+msgstr ""
+
+msgid "Send"
+msgstr ""
+
+msgid "Send link"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "This email is already registered. Please log in."
+msgstr ""
+
+msgid "This link is invalid or has expired. Request a new one."
+msgstr ""
+
+msgid "This username is taken."
+msgstr ""
+
+msgid "Title: required"
+msgstr ""
+
+msgid "To"
+msgstr ""
+
+#, php-format
+msgid "Too many failed attempts. Try again in %d minutes."
+msgstr ""
+
+msgid "Wrong email / username or password."
+msgstr ""
+
+msgid "Yes"
+msgstr ""
+
+msgid "You are not allowed to use this form."
+msgstr ""
+
+msgid "You can only change your own items."
+msgstr ""

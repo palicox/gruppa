@@ -1,0 +1,7 @@
+/* Gruppa Table Builder admin — on top of the Gruppa CMS admin look (gruppa-admin). */
+.gruppa-tb .gtb-card .form-table td input[type=text],.gruppa-tb .gtb-card .form-table td input[type=number],.gruppa-tb .gtb-card .form-table td select{width:100%;max-width:none}
+.gruppa-tb .gtb-card .gruppa-inline input{flex:1}
+.gruppa-tb #gtb-item-value{max-width:240px}
+.gruppa-tb .gfa-add{display:flex;gap:8px;align-items:center;margin:12px 0 0}
+.gruppa-tb .gfa-add select{max-width:320px}
+.gruppa-tb .gruppa-table td .gruppa-shortcode{max-width:none}

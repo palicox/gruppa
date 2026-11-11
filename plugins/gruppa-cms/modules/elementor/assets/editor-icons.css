@@ -1,0 +1,33 @@
+/* ==============================
+   GRUPPA CMS – ikony widgetov v editore Elementor
+   Phosphor Icons (MIT) – Regular, na hover Duotone
+   ============================== */
+
+.gruppa-icon {
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	background-color: currentColor;
+	-webkit-mask: var(--icon) center / contain no-repeat;
+	mask: var(--icon) center / contain no-repeat;
+	font-style: normal;
+	vertical-align: middle;
+}
+
+/* ----- Regular (základ) ----- */
+
+.gruppa-icon-text    { --icon: url('icons/text.svg'); }
+.gruppa-icon-search  { --icon: url('icons/search.svg'); }
+.gruppa-icon-listing { --icon: url('icons/listing.svg'); }
+.gruppa-icon-table   { --icon: url('icons/table.svg'); }
+.gruppa-icon-form    { --icon: url('icons/form.svg'); }
+.gruppa-icon-login   { --icon: url('icons/login.svg'); }
+
+/* ----- Duotone (hover na widget v paneli) ----- */
+
+.elementor-element:hover .gruppa-icon-text    { --icon: url('icons/text-duotone.svg'); }
+.elementor-element:hover .gruppa-icon-search  { --icon: url('icons/search-duotone.svg'); }
+.elementor-element:hover .gruppa-icon-listing { --icon: url('icons/listing-duotone.svg'); }
+.elementor-element:hover .gruppa-icon-table   { --icon: url('icons/table-duotone.svg'); }
+.elementor-element:hover .gruppa-icon-form    { --icon: url('icons/form-duotone.svg'); }
+.elementor-element:hover .gruppa-icon-login   { --icon: url('icons/login-duotone.svg'); }

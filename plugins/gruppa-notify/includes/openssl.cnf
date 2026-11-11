@@ -1,0 +1,6 @@
+# Minimal OpenSSL config for Gruppa Notify (used only when the server has none)
+HOME = .
+[ req ]
+default_bits = 2048
+distinguished_name = req_dn
+[ req_dn ]

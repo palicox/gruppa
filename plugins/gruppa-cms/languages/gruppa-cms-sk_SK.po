@@ -1,0 +1,237 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Gruppa CMS\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Language: sk_SK\n"
+
+#, php-format
+msgid "%1$s: file type not allowed (%2$s)"
+msgstr "%1$s: nepovolený typ súboru (%2$s)"
+
+#, php-format
+msgid "%1$s: max %2$s"
+msgstr "%1$s: najviac %2$s"
+
+#, php-format
+msgid "%1$s: max %2$s MB"
+msgstr "%1$s: najviac %2$s MB"
+
+#, php-format
+msgid "%1$s: max %2$s characters"
+msgstr "%1$s: najviac %2$s znakov"
+
+#, php-format
+msgid "%1$s: max %2$s files"
+msgstr "%1$s: najviac %2$s súborov"
+
+#, php-format
+msgid "%1$s: max %2$s."
+msgstr "%1$s: najviac %2$s."
+
+#, php-format
+msgid "%1$s: min %2$s"
+msgstr "%1$s: najmenej %2$s"
+
+#, php-format
+msgid "%s: file type not allowed."
+msgstr "%s: nepovolený typ súboru."
+
+#, php-format
+msgid "%s: invalid URL"
+msgstr "%s: neplatná adresa URL"
+
+#, php-format
+msgid "%s: invalid date"
+msgstr "%s: neplatný dátum"
+
+#, php-format
+msgid "%s: invalid email"
+msgstr "%s: neplatný e-mail"
+
+#, php-format
+msgid "%s: invalid phone number"
+msgstr "%s: neplatné telefónne číslo"
+
+#, php-format
+msgid "%s: min 8 characters"
+msgstr "%s: aspoň 8 znakov"
+
+#, php-format
+msgid "%s: not a number"
+msgstr "%s: nie je číslo"
+
+#, php-format
+msgid "%s: required"
+msgstr "%s: povinné pole"
+
+msgid "All"
+msgstr "Všetky"
+
+msgid "At least 8 characters."
+msgstr "Aspoň 8 znakov."
+
+msgid "Back to log in"
+msgstr "Späť na prihlásenie"
+
+msgid "Choose file"
+msgstr "Vybrať súbor"
+
+msgid "Choose files"
+msgstr "Vybrať súbory"
+
+msgid "Create account"
+msgstr "Vytvoriť účet"
+
+msgid "Draft"
+msgstr "Koncept"
+
+msgid "Email or username"
+msgstr "E-mail alebo používateľské meno"
+
+msgid "Enter a valid email."
+msgstr "Zadajte platný e-mail."
+
+msgid "Enter your email or username. We will send you a link to set a new password."
+msgstr "Zadajte e-mail alebo používateľské meno. Pošleme vám odkaz na nastavenie nového hesla."
+
+msgid "Error."
+msgstr "Chyba."
+
+msgid "Filter"
+msgstr "Filtrovať"
+
+msgid "Forgot your password?"
+msgstr "Zabudli ste heslo?"
+
+msgid "Form not found."
+msgstr "Formulár sa nenašiel."
+
+msgid "From"
+msgstr "Od"
+
+msgid "If the account exists, we have sent an email with a link to set a new password."
+msgstr "Ak účet existuje, poslali sme e-mail s odkazom na nastavenie nového hesla."
+
+msgid "Invalid username."
+msgstr "Neplatné používateľské meno."
+
+msgid "Item not found."
+msgstr "Záznam sa nenašiel."
+
+msgid "Listing not found."
+msgstr "Výpis sa nenašiel."
+
+msgid "Load more"
+msgstr "Načítať viac"
+
+msgid "Log in"
+msgstr "Prihlásiť sa"
+
+msgid "Log out"
+msgstr "Odhlásiť sa"
+
+msgid "Logged in as {user_name}."
+msgstr "Prihlásený ako {user_name}."
+
+msgid "Login failed."
+msgstr "Prihlásenie zlyhalo."
+
+#, php-format
+msgid "Max %d files."
+msgstr "Najviac %d súborov."
+
+msgid "New password"
+msgstr "Nové heslo"
+
+msgid "No"
+msgstr "Nie"
+
+msgid "No file chosen"
+msgstr "Nie je vybraný žiadny súbor"
+
+msgid "No files chosen"
+msgstr "Nie sú vybrané žiadne súbory"
+
+msgid "Nothing found."
+msgstr "Nič sa nenašlo."
+
+msgid "Nothing to edit yet."
+msgstr "Zatiaľ nie je čo upraviť."
+
+msgid "Password"
+msgstr "Heslo"
+
+msgid "Please check the highlighted fields."
+msgstr "Skontrolujte označené polia."
+
+msgid "Please enter your email or username."
+msgstr "Zadajte e-mail alebo používateľské meno."
+
+msgid "Please fill in both fields."
+msgstr "Vyplňte obe polia."
+
+msgid "Please log in to use this form."
+msgstr "Na použitie formulára sa prihláste."
+
+msgid "Please log in."
+msgstr "Prihláste sa."
+
+msgid "Published"
+msgstr "Publikované"
+
+msgid "Remember me"
+msgstr "Zapamätať si ma"
+
+msgid "Request failed. Please try again."
+msgstr "Požiadavka zlyhala. Skúste to znova."
+
+msgid "Required"
+msgstr "Povinné"
+
+msgid "Reset filters"
+msgstr "Zrušiť filtre"
+
+msgid "Save password"
+msgstr "Uložiť heslo"
+
+msgid "Send"
+msgstr "Odoslať"
+
+msgid "Send link"
+msgstr "Poslať odkaz"
+
+msgid "Thank you."
+msgstr "Ďakujeme."
+
+msgid "This email is already registered. Please log in."
+msgstr "Tento e-mail je už registrovaný. Prihláste sa."
+
+msgid "This link is invalid or has expired. Request a new one."
+msgstr "Odkaz je neplatný alebo vypršal. Vyžiadajte si nový."
+
+msgid "This username is taken."
+msgstr "Toto používateľské meno je obsadené."
+
+msgid "Title: required"
+msgstr "Názov: povinné pole"
+
+msgid "To"
+msgstr "Do"
+
+#, php-format
+msgid "Too many failed attempts. Try again in %d minutes."
+msgstr "Príliš veľa neúspešných pokusov. Skúste to znova o %d minút."
+
+msgid "Wrong email / username or password."
+msgstr "Nesprávny e-mail / používateľské meno alebo heslo."
+
+msgid "Yes"
+msgstr "Áno"
+
+msgid "You are not allowed to use this form."
+msgstr "Tento formulár nemôžete použiť."
+
+msgid "You can only change your own items."
+msgstr "Môžete meniť len vlastné záznamy."

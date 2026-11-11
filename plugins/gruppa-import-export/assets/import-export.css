@@ -1,0 +1,34 @@
+/* Gruppa Import/Export — page styles (in addition to the Gruppa CMS admin UI) */
+.gruppa-io .notice.inline{margin:0 0 16px}
+.gruppa-io .gruppa-io-import{padding:0;overflow:hidden}
+.gruppa-io-map{width:100%;border-collapse:collapse;table-layout:fixed}
+.gruppa-io-map th{vertical-align:top;padding:var(--g-pad);border-bottom:1px solid #dcdcde;text-align:left;font-weight:400}
+.gruppa-io-map th select{width:100%;max-width:none}
+.gruppa-io-map td{padding:10px var(--g-pad);border-bottom:1px solid #f0f0f1;vertical-align:middle;word-break:break-word}
+.gruppa-io-map tbody tr:last-child td{border-bottom:0}
+.gruppa-io-map td select{width:100%;max-width:none}
+.gruppa-io-map .gruppa-io-arrow{width:32px;padding-left:0;padding-right:0;text-align:center;color:#a7aaad}
+.gruppa-io-step{display:block;margin:0 0 10px;color:#646970;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+#gio-file-info{display:block;margin-top:8px;font-size:12px}
+.gruppa-io-sample{display:block;margin-top:2px;color:#8c8f94;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gruppa-io-hint{margin-left:6px;color:#8c8f94;font-size:12px}
+.gruppa-io-map tr.is-mapped td:first-child{box-shadow:inset 3px 0 #00a32a}
+.gruppa-io-map tr.is-id td:first-child{box-shadow:inset 3px 0 #dba617}
+.gruppa-io-map tr.is-id select{border-color:#dba617}
+.gruppa-io-map tr.is-dup select{border-color:#d63638}
+.gruppa-io-map tr.is-off td:first-child code{color:#8c8f94}
+.gruppa-io-foot{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;padding:var(--g-pad);border-top:1px solid #dcdcde}
+.gruppa-io-foot label{display:inline-flex;align-items:center;gap:6px}
+.gruppa-io-author{font-weight:500;gap:8px!important}
+.gruppa-io-spacer{flex:1}
+.gruppa-io-progress{height:4px;background:#f0f0f1}
+.gruppa-io-progress>div{height:100%;width:0;background:#2271b1;transition:width .2s}
+#gio-result .notice{margin:0 0 16px}
+.gruppa-seg{display:inline-flex;border:1px solid #8c8f94;border-radius:var(--g-r-field);overflow:hidden}
+.gruppa-seg label{display:block;margin:0}
+.gruppa-seg input{position:absolute;opacity:0}
+.gruppa-seg span{display:block;padding:0 16px;line-height:30px;cursor:pointer}
+.gruppa-seg label+label span{border-left:1px solid #8c8f94}
+.gruppa-seg input:checked+span{background:#2271b1;color:#fff}
+.gruppa-seg input:focus-visible+span{box-shadow:inset 0 0 0 2px #72aee6}
+@media (max-width:600px){.gruppa-io-map th,.gruppa-io-map td{padding-left:12px;padding-right:12px}.gruppa-io-map .gruppa-io-arrow{width:16px}}

@@ -1,0 +1,116 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Gruppa Payments 1.0.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgid "Active"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Cancel this subscription?"
+msgstr ""
+
+msgid "Canceled"
+msgstr ""
+
+msgid "Expired"
+msgstr ""
+
+msgid "Failed"
+msgstr ""
+
+msgid "Manage"
+msgstr ""
+
+msgid "Monthly"
+msgstr ""
+
+msgid "One-off"
+msgstr ""
+
+msgid "Online payments are not available right now."
+msgstr ""
+
+msgid "Paid"
+msgstr ""
+
+msgid "Paid until"
+msgstr ""
+
+msgid "Past due"
+msgstr ""
+
+msgid "Pay"
+msgstr ""
+
+msgid "Pay by card"
+msgstr ""
+
+msgid "Pay with PayPal"
+msgstr ""
+
+msgid "Pending"
+msgstr ""
+
+msgid "Price"
+msgstr ""
+
+msgid "Refunded"
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Subscription"
+msgstr ""
+
+msgid "Thank you, the payment was successful."
+msgstr ""
+
+msgid "Thank you, your subscription is active."
+msgstr ""
+
+msgid "The amount to pay is missing."
+msgstr ""
+
+msgid "The payment could not be started:"
+msgstr ""
+
+msgid "The payment failed. Please try again."
+msgstr ""
+
+msgid "The payment has expired. Please try again."
+msgstr ""
+
+msgid "The payment link is not valid. Reload the page and try again."
+msgstr ""
+
+msgid "The payment of your subscription is overdue."
+msgstr ""
+
+msgid "The payment was canceled."
+msgstr ""
+
+msgid "The payment was refunded."
+msgstr ""
+
+msgid "This payment method is not available right now."
+msgstr ""
+
+msgid "We are waiting for the payment to be confirmed. This usually takes a moment."
+msgstr ""
+
+msgid "Yearly"
+msgstr ""
+
+msgid "You have no subscriptions."
+msgstr ""
+
+msgid "month"
+msgstr ""
+
+msgid "year"
+msgstr ""
+

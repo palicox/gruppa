@@ -1,0 +1,114 @@
+/* Gruppa CMS — Dynamic Forms (frontend). Override with your theme / Elementor styles. */
+.gruppa-form,.gruppa-login{box-sizing:border-box;--gf-gap:16px;--gf-r:6px;--gf-border:#c3c4c7;--gf-accent:#2271b1;--gf-error:#d63638}
+.gruppa-form-fields{display:flex;flex-wrap:wrap;margin:0 calc(var(--gf-gap-x,var(--gf-gap)) / -2)}
+.gruppa-form-field{flex:0 0 var(--gf-w,100%);max-width:var(--gf-w,100%);padding:0 calc(var(--gf-gap-x,var(--gf-gap)) / 2);margin:0 0 var(--gf-gap-y,var(--gf-gap));box-sizing:border-box}
+.gruppa-form-label{display:block;margin:0 0 6px;font-weight:600}
+.gruppa-form-req{color:var(--gf-error)}
+.gruppa-form input[type=text],.gruppa-form input[type=email],.gruppa-form input[type=tel],.gruppa-form input[type=password],
+.gruppa-form input[type=number],.gruppa-form input[type=date],.gruppa-form select,.gruppa-form textarea{width:100%;max-width:none;box-sizing:border-box;padding:10px 12px;border:1px solid var(--gf-border);border-radius:var(--gf-r);font:inherit;background:#fff}
+.gruppa-form fieldset{display:flex;flex-wrap:wrap;gap:8px 16px;border:0;padding:0;margin:0;min-width:0}
+.gruppa-form fieldset label{display:inline-flex;align-items:center;gap:8px;margin:0;cursor:pointer}
+.gruppa-form fieldset br{display:none}
+.gruppa-form .description{margin:6px 0 0;font-size:.875em;opacity:.75}
+.gruppa-form-field.has-error input,.gruppa-form-field.has-error select,.gruppa-form-field.has-error textarea{border-color:var(--gf-error)}
+.gruppa-form-error{margin:6px 0 0;color:var(--gf-error);font-size:.875em}
+.gruppa-form-submit{display:flex}
+.gruppa-form-submit[data-align=center]{justify-content:center}
+.gruppa-form-submit[data-align=right]{justify-content:flex-end}
+/* Button: strong selectors so theme / Elementor kit button styles (e.g. hover colours) do not leak in. */
+.gruppa-form .gruppa-form-submit .gruppa-form-button{display:inline-flex;align-items:center;justify-content:center;margin:0;padding:12px 24px;border:0 solid transparent;border-radius:var(--gf-r);background:var(--gf-accent);color:#fff;font:inherit;line-height:1.2;text-transform:none;text-decoration:none;box-shadow:none;cursor:pointer;transition:background-color .2s,color .2s,border-color .2s,box-shadow .2s,filter .2s}
+.gruppa-form .gruppa-form-submit .gruppa-form-button:hover,.gruppa-form .gruppa-form-submit .gruppa-form-button:focus{background:var(--gf-accent);color:#fff;filter:brightness(.92);text-decoration:none}
+.gruppa-form .gruppa-form-submit .gruppa-form-button:focus-visible{outline:2px solid var(--gf-accent);outline-offset:2px}
+.gruppa-form .gruppa-form-submit .gruppa-form-button[disabled]{opacity:.6;cursor:wait}
+.gruppa-form-submit[data-align=stretch] .gruppa-form-button{flex:1}
+.gruppa-form-notice{margin:var(--gf-gap) 0 0;padding:12px 16px;border-radius:var(--gf-r);border:1px solid currentColor}
+.gruppa-form-notice.is-success{color:#007017}
+.gruppa-form-notice.is-error{color:var(--gf-error)}
+.gruppa-form-hp{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
+/* Switcher — sizes and colours via variables (Elementor widget → Style → Switcher) */
+.gruppa-form .gruppa-switch{position:relative;display:inline-block;width:var(--gf-sw-w,40px);height:var(--gf-sw-h,22px);margin:0;cursor:pointer}
+.gruppa-form .gruppa-switch input{position:absolute;opacity:0;width:0;height:0;margin:0}
+.gruppa-form .gruppa-switch span{position:absolute;inset:0;background:var(--gf-sw-bg,var(--gf-border));border-radius:var(--gf-sw-r,999px);transition:.15s}
+.gruppa-form .gruppa-switch span:before{content:"";position:absolute;width:var(--gf-sw-knob,16px);height:var(--gf-sw-knob,16px);left:calc((var(--gf-sw-h,22px) - var(--gf-sw-knob,16px)) / 2);top:calc((var(--gf-sw-h,22px) - var(--gf-sw-knob,16px)) / 2);background:var(--gf-sw-knob-c,#fff);border-radius:var(--gf-sw-knob-r,50%);transition:.15s}
+.gruppa-form .gruppa-switch:hover span{background:var(--gf-sw-bg-h,var(--gf-sw-bg,var(--gf-border)))}
+.gruppa-form .gruppa-switch:hover span:before{background:var(--gf-sw-knob-c-h,var(--gf-sw-knob-c,#fff))}
+.gruppa-form .gruppa-switch input:checked+span{background:var(--gf-sw-bg-on,var(--gf-accent))}
+.gruppa-form .gruppa-switch input:checked+span:before{transform:translateX(calc(var(--gf-sw-w,40px) - var(--gf-sw-h,22px)));background:var(--gf-sw-knob-c-on,var(--gf-sw-knob-c,#fff))}
+.gruppa-form .gruppa-switch input:focus-visible+span{box-shadow:0 0 0 2px #fff,0 0 0 4px var(--gf-accent)}
+
+/* Checkbox / Radio — own drawing so every part can be styled (Elementor widget → Style → Checkbox / Radio) */
+.gruppa-form label:not(.gruppa-switch)>input[type=checkbox],
+.gruppa-form label:not(.gruppa-switch)>input[type=radio]{-webkit-appearance:none;appearance:none;position:relative;flex:0 0 auto;margin:0;padding:0;cursor:pointer;transition:background-color .15s,border-color .15s;vertical-align:middle}
+.gruppa-form label:not(.gruppa-switch)>input[type=checkbox]{width:var(--gf-cb-size,18px);height:var(--gf-cb-size,18px);border:var(--gf-cb-bw,1px) var(--gf-cb-bs,solid) var(--gf-cb-bc,var(--gf-border));border-radius:var(--gf-cb-r,4px);background:var(--gf-cb-bg,#fff)}
+.gruppa-form label:not(.gruppa-switch):hover>input[type=checkbox]{background:var(--gf-cb-bg-h,var(--gf-cb-bg,#fff));border-color:var(--gf-cb-bc-h,var(--gf-cb-bc,var(--gf-border)))}
+.gruppa-form label:not(.gruppa-switch)>input[type=checkbox]:checked{background:var(--gf-cb-bg-on,var(--gf-accent));border-color:var(--gf-cb-bc-on,var(--gf-cb-bg-on,var(--gf-accent)))}
+.gruppa-form label:not(.gruppa-switch)>input[type=checkbox]:checked::after{content:"";position:absolute;left:50%;top:45%;width:28%;height:55%;border:solid var(--gf-cb-check,#fff);border-width:0 2px 2px 0;transform:translate(-50%,-50%) rotate(45deg);box-sizing:border-box}
+.gruppa-form label:not(.gruppa-switch)>input[type=radio]{width:var(--gf-rd-size,18px);height:var(--gf-rd-size,18px);border:var(--gf-rd-bw,1px) var(--gf-rd-bs,solid) var(--gf-rd-bc,var(--gf-border));border-radius:50%;background:var(--gf-rd-bg,#fff)}
+.gruppa-form label:not(.gruppa-switch):hover>input[type=radio]{background:var(--gf-rd-bg-h,var(--gf-rd-bg,#fff));border-color:var(--gf-rd-bc-h,var(--gf-rd-bc,var(--gf-border)))}
+.gruppa-form label:not(.gruppa-switch)>input[type=radio]:checked{background:var(--gf-rd-bg-on,var(--gf-accent));border-color:var(--gf-rd-bc-on,var(--gf-rd-bg-on,var(--gf-accent)))}
+.gruppa-form label:not(.gruppa-switch)>input[type=radio]:checked::after{content:"";position:absolute;left:50%;top:50%;width:var(--gf-rd-dot,40%);height:var(--gf-rd-dot,40%);border-radius:50%;background:var(--gf-rd-check,#fff);transform:translate(-50%,-50%)}
+.gruppa-form label:not(.gruppa-switch):has(>input[type=checkbox]),
+.gruppa-form label:not(.gruppa-switch):has(>input[type=radio]){cursor:pointer;transition:background-color .15s,border-color .15s,color .15s}
+.gruppa-form label:not(.gruppa-switch)>input[type=checkbox]:focus-visible,
+.gruppa-form label:not(.gruppa-switch)>input[type=radio]:focus-visible{outline:2px solid var(--gf-accent);outline-offset:2px}
+.gruppa-form-message{padding:12px 16px;border:1px dashed #c3c4c7;border-radius:6px}
+@media (max-width:640px){.gruppa-form-field{flex-basis:100%;max-width:100%}}
+/* Media upload */
+.gruppa-form-media-list{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 8px;padding:0;list-style:none}
+.gruppa-form-media-list:empty{display:none}
+.gruppa-form-media-list li{position:relative;width:96px;margin:0;padding:4px;border:1px solid var(--gf-border);border-radius:var(--gf-r);text-align:center;font-size:11px}
+.gruppa-form-media-list img{display:block;width:100%;height:72px;object-fit:cover;border-radius:calc(var(--gf-r) / 2)}
+.gruppa-form-media-list span{display:block;margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gruppa-form .gruppa-form-media-remove{position:absolute;top:-8px;right:-8px;width:20px;height:20px;padding:0;border:0;border-radius:50%;background:var(--gf-error);color:#fff;line-height:20px;font-size:14px;cursor:pointer}
+/* Hidden native file input; the visible button is a plain <button> so it takes Elementor / theme button styles. */
+.gruppa-form .gruppa-form-file{position:absolute!important;width:1px;height:1px;opacity:0;overflow:hidden;pointer-events:none}
+.gruppa-form-upload-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+.gruppa-form-file-names{font-size:.875em;opacity:.8;word-break:break-word}
+.gruppa-form-media-hint,.gruppa-form-login{margin:6px 0 0;font-size:.875em;opacity:.75}
+/* Single checkbox (switcher shown as checkbox) */
+.gruppa-form-check{display:inline-flex;align-items:center;gap:8px;cursor:pointer}
+/* Rich text editor */
+.gruppa-form .wp-editor-wrap{width:100%}
+.gruppa-form .wp-editor-container{border:1px solid var(--gf-border);border-radius:var(--gf-r);overflow:hidden;transition:border-color .15s}
+.gruppa-form .wp-editor-area{border:0!important;border-radius:0!important}
+.gruppa-form .gruppa-form-media-list .gruppa-form-media-remove:hover,.gruppa-form .gruppa-form-media-list .gruppa-form-media-remove:focus{background:var(--gf-error);color:#fff;border:0}
+
+/* Rich text editor toolbar — flat neutral grey look; theme / Elementor kit button styles must not leak in. */
+.gruppa-form .wp-editor-wrap .mce-panel{background:#fff!important;border:0!important;box-shadow:none!important}
+.gruppa-form .wp-editor-wrap .mce-toolbar-grp{background:#f6f7f7!important;border:0!important;border-bottom:1px solid #e5e5e5!important;padding:4px 6px!important}
+.gruppa-form .wp-editor-wrap .mce-toolbar .mce-btn-group{padding:0!important;margin:0!important;border:0!important}
+.gruppa-form .wp-editor-wrap .mce-toolbar .mce-btn,
+.mce-inline-toolbar-grp .mce-btn{background:transparent!important;border:1px solid transparent!important;border-radius:3px!important;box-shadow:none!important;margin:1px!important;filter:none!important}
+.gruppa-form .wp-editor-wrap .mce-toolbar .mce-btn:hover,
+.gruppa-form .wp-editor-wrap .mce-toolbar .mce-btn:focus,
+.mce-inline-toolbar-grp .mce-btn:hover{background:#e9e9eb!important;border-color:transparent!important}
+.gruppa-form .wp-editor-wrap .mce-toolbar .mce-btn.mce-active,
+.gruppa-form .wp-editor-wrap .mce-toolbar .mce-btn.mce-active:hover,
+.mce-inline-toolbar-grp .mce-btn.mce-active{background:#dcdcde!important;border-color:transparent!important}
+.gruppa-form .wp-editor-wrap .mce-container button,
+.gruppa-form .wp-editor-wrap .mce-container button:hover,
+.gruppa-form .wp-editor-wrap .mce-container button:focus,
+.gruppa-form .wp-editor-wrap .mce-container button:active,
+.mce-inline-toolbar-grp button,
+.mce-inline-toolbar-grp button:hover,
+.mce-inline-toolbar-grp button:focus{display:block!important;width:auto!important;height:auto!important;min-height:0!important;min-width:0!important;margin:0!important;padding:3px 4px!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;outline:none!important;color:#1d2327!important;font-size:14px!important;font-weight:400!important;line-height:1!important;letter-spacing:0!important;text-transform:none!important;text-decoration:none!important;filter:none!important;transform:none!important;transition:none!important}
+.gruppa-form .wp-editor-wrap .mce-ico,
+.mce-inline-toolbar-grp .mce-ico{color:#1d2327!important;text-shadow:none!important}
+.gruppa-form .wp-editor-wrap .mce-btn.mce-disabled .mce-ico{color:#a7aaad!important}
+/* Bottom bar only for the resize handle: drag to make the editor taller. */
+.gruppa-form .wp-editor-wrap .mce-statusbar{display:block!important;background:#fff!important;border:0!important;border-top:1px solid #f0f0f1!important}
+.gruppa-form .wp-editor-wrap .mce-statusbar .mce-container-body{position:relative;min-height:14px}
+.gruppa-form .wp-editor-wrap .mce-statusbar .mce-path,.gruppa-form .wp-editor-wrap .mce-statusbar .mce-wordcount{display:none!important}
+.gruppa-form .wp-editor-wrap .mce-statusbar .mce-resizehandle{display:block!important;position:absolute;right:0;bottom:0;width:20px;height:14px;cursor:ns-resize}
+.gruppa-form .wp-editor-wrap .mce-statusbar .mce-resizehandle i{color:#8c8f94!important}
+.gruppa-form .wp-editor-wrap .mce-edit-area{border:0!important}
+.gruppa-form .wp-editor-wrap iframe{background:#fff}
+.gruppa-form .wp-editor-wrap,.gruppa-form .wp-editor-wrap *,.mce-inline-toolbar-grp,.mce-inline-toolbar-grp *{box-shadow:none!important;text-shadow:none!important;background-image:none!important}
+/* Gruppa Login */
+.gruppa-login-links{display:flex;flex-wrap:wrap;gap:4px 0;margin:var(--gf-gap-y,var(--gf-gap)) 0 0;font-size:.9375em}
+.gruppa-login-sep{opacity:.5;padding:0 6px}
+.gruppa-login-intro{flex:0 0 100%;box-sizing:border-box;margin:0 0 var(--gf-gap-y,var(--gf-gap));padding:0 calc(var(--gf-gap-x,var(--gf-gap)) / 2)}
+.gruppa-login>.gruppa-form-notice{margin:0 0 var(--gf-gap-y,var(--gf-gap))}
+.gruppa-login-status{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px}
+/* 0.19.0 — note for administrators (visitors do not see it) */
+.gruppa-form-admin-note{margin:0 0 12px;padding:8px 12px;border:1px dashed #dba617;border-radius:6px;color:#50575e;font-size:13px}

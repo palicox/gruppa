@@ -1,0 +1,30 @@
+/* Gruppa CMS – dynamic tag settings in the Elementor editor:
+   labels in one column, inputs start on one vertical line, long labels wrap. */
+.elementor-control.gruppa-tag-ctrl.gruppa-tag-ctrl > .elementor-control-content {
+	/* A control named "field" also gets the class elementor-control-field. */
+	flex: 1 1 100%;
+	width: 100%;
+}
+.elementor-control.gruppa-tag-ctrl.gruppa-tag-ctrl.elementor-label-inline > .elementor-control-content > .elementor-control-field {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+.elementor-control.gruppa-tag-ctrl.gruppa-tag-ctrl.elementor-label-inline .elementor-control-title {
+	flex: 0 0 32%;
+	max-width: 32%;
+	white-space: normal;
+	line-height: 1.3;
+	overflow-wrap: anywhere;
+}
+.elementor-control.gruppa-tag-ctrl.gruppa-tag-ctrl.elementor-label-inline .elementor-control-input-wrapper {
+	flex: 1 1 auto;
+	width: auto;
+	max-width: none;
+	margin-inline-start: 0;
+}
+.elementor-control.gruppa-tag-ctrl.gruppa-tag-ctrl.elementor-label-inline .elementor-control-input-wrapper select,
+.elementor-control.gruppa-tag-ctrl.gruppa-tag-ctrl.elementor-label-inline .elementor-control-input-wrapper input {
+	width: 100%;
+	max-width: none;
+}

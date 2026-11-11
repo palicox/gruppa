@@ -1,0 +1,32 @@
+/* Gruppa Notify — page styles (in addition to the Gruppa CMS admin UI) */
+.gruppa-notify .notice.inline{margin:0 0 16px}
+.gruppa-notify .gruppa-card .description{margin-top:6px}
+.gruppa-notify .gruppa-type-table td input[type=url]{width:100%;max-width:none}
+.gruppa-notify .gruppa-type-table td input.gruppa-shortcode{width:100%;max-width:280px}
+.gruppa-notify-keys{margin:16px 0 0}
+.gn-log td{vertical-align:top}
+.gn-log .gn-col-date{width:130px}
+.gn-log .gn-col-user{width:16%}
+.gn-log .gn-col-source{width:20%}
+.gn-log .gn-col-num{width:72px}
+.gn-log .gn-col-read{width:72px}
+.gn-log-title{display:block;font-weight:600}
+.gn-log-body{display:block;margin-top:2px}
+.gn-log-url{display:inline-block;margin-top:4px;font-size:12px;color:#646970;word-break:break-all}
+.gn-read{color:#00a32a}
+.gn-log-foot{display:flex;align-items:center;gap:16px;margin:16px 0 0}
+.gn-log-foot .gruppa-delete{margin-left:auto}
+.gn-pages{display:flex;gap:4px}
+.gn-pages a,.gn-pages span{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;padding:0 6px;border-radius:6px;text-decoration:none}
+.gn-pages .is-current{background:#1d2327;color:#fff}
+.gn-fa-list{display:flex;flex-direction:column;gap:6px;max-height:208px;overflow:auto;padding:10px 12px;border:1px solid #dcdcde;border-radius:8px;background:#fff}
+.gn-fa-roles{flex-direction:row;flex-wrap:wrap;gap:6px 18px;max-height:none}
+.gn-fa-list label{display:flex;align-items:center;gap:8px;margin:0}
+.gn-fa-list input[type=checkbox]{margin:0}
+.gn-fa-count{margin-left:auto;color:#646970;font-size:12px}
+.gn-fa-count.is-none{color:#b32d2e}
+.gn-fa-empty{margin:0}
+.gruppa-notify .gruppa-type-table td textarea{width:100%}
+.gn-forms-intro{margin:0 0 16px}
+.gn-forms-kind{display:block;margin-top:2px;color:#646970;font-size:12px}
+.gn-forms .row-actions{margin-top:4px}

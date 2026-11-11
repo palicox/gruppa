@@ -1,0 +1,50 @@
+/* Gruppa Table Builder — frontend. Colours follow the theme; Elementor widget styles override.
+   Lines: --gt-line-h (between rows) and --gt-line-v (between columns), colour --gt-border.
+   Row colours are set on the cells (td) — themes (Hello / Elementor kit) stripe odd rows on td, which is reset here. */
+.gruppa-table{--gt-border:rgba(0,0,0,.12);--gt-head-bg:rgba(0,0,0,.04);--gt-pad-y:10px;--gt-pad-x:14px;--gt-radius:8px;--gt-line-h:1px;--gt-line-v:0px;width:100%}
+.gruppa-table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--gt-border);border-radius:var(--gt-radius);box-sizing:border-box}
+.gruppa-table table{width:100%;border-collapse:separate;border-spacing:0;margin:0;border:0;table-layout:auto;background:none}
+.gruppa-table th,.gruppa-table td{padding:var(--gt-pad-y) var(--gt-pad-x);border:0;border-bottom:var(--gt-line-h) var(--gt-line-style,solid) var(--gt-border);text-align:left;vertical-align:top;background-color:transparent}
+.gruppa-table th+th,.gruppa-table td+td{border-left:var(--gt-line-v) var(--gt-line-style,solid) var(--gt-border)}
+.gruppa-table thead th{background-color:var(--gt-head-bg);font-weight:600;white-space:nowrap}
+.gruppa-table tbody tr:last-child td{border-bottom-width:0}
+.gruppa-table tbody tr:nth-child(n)>td{--gt-row-current:var(--gt-cell-bg,transparent);background-color:var(--gt-row-current)}
+.gruppa-table tbody tr:nth-child(even)>td{--gt-row-current:var(--gt-row-even,var(--gt-cell-bg,transparent))}
+.gruppa-table tbody tr:nth-child(n):hover>td{background-color:var(--gt-row-hover,var(--gt-row-current))}
+.gruppa-table .gt-align-center{text-align:center}
+.gruppa-table .gt-align-right{text-align:right}
+.gruppa-table th[data-sort]{cursor:pointer;user-select:none}
+.gruppa-table-sort::after{content:"";display:inline-block;width:0;height:0;margin-left:6px;vertical-align:middle;border:4px solid transparent;border-top-color:currentColor;opacity:.3;transform:translateY(2px)}
+.gruppa-table th[aria-sort="ascending"] .gruppa-table-sort::after{border-top-color:transparent;border-bottom-color:currentColor;opacity:1;transform:translateY(-2px)}
+.gruppa-table th[aria-sort="descending"] .gruppa-table-sort::after{opacity:1}
+.gruppa-table-img{display:block;width:56px;height:56px;object-fit:cover;border-radius:4px}
+.gruppa-table-img+.gruppa-table-img{margin-top:4px}
+.gt-align-center .gruppa-table-img{margin-left:auto;margin-right:auto}
+.gt-align-right .gruppa-table-img{margin-left:auto}
+.gruppa-table-none{opacity:.4}
+.gruppa-table-empty,.gruppa-table-message{padding:12px 0}
+.gruppa-table-message{color:#8a6d00}
+.gruppa-table-pagination{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.gruppa-table-pagination .page-numbers{padding:4px 10px;border:1px solid var(--gt-border);border-radius:4px;text-decoration:none}
+.gruppa-table-pagination .current{font-weight:600}
+
+/* Column widths (Elementor widget): Equal = same width for every column; Custom = widths from the widget
+   (columns without a width size by their content). */
+.gruppa-table--w-equal table{table-layout:fixed}
+.gruppa-table--w-equal col{width:auto!important}
+.gruppa-table--w-custom col{width:auto!important}
+
+/* Mobile: cards under each other (label : value) */
+@media (max-width:767px){
+	.gruppa-table--cards .gruppa-table-scroll{overflow:visible;border:0!important;border-radius:0!important;box-shadow:none!important;padding:0!important}
+	.gruppa-table--cards table,.gruppa-table--cards tbody,.gruppa-table--cards tr,.gruppa-table--cards td{display:block;width:100%!important;box-sizing:border-box;min-width:0!important}
+	.gruppa-table--cards colgroup,.gruppa-table--cards thead{display:none}
+	.gruppa-table--cards table{background:none!important}
+	.gruppa-table--cards tr{border:1px solid var(--gt-border);border-radius:var(--gt-card-radius,var(--gt-radius));margin:0 0 var(--gt-card-gap,12px);overflow:hidden;background:var(--gt-card-bg,transparent)}
+	.gruppa-table--cards td{display:flex;justify-content:space-between;gap:16px;text-align:right;overflow-wrap:anywhere;border-bottom:1px solid var(--gt-border)}
+	.gruppa-table--cards td+td{border-left:0}
+	.gruppa-table--cards td>*{min-width:0}
+	.gruppa-table--cards td::before{content:attr(data-label);font-weight:600;color:var(--gt-card-label,inherit);text-align:left;flex:0 0 auto;max-width:50%}
+	.gruppa-table--cards tbody tr td:last-child{border-bottom:0}
+	.gruppa-table--cards .gruppa-table-img{margin:0}
+}

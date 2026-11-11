@@ -1,0 +1,26 @@
+/* Gruppa CMS — Listing */
+.gruppa-listing{--gl-cols:3;--gl-gap-x:24px;--gl-gap-y:24px}
+.gruppa-listing-grid{display:grid;grid-template-columns:repeat(var(--gl-cols),minmax(0,1fr));gap:var(--gl-gap-y) var(--gl-gap-x)}
+.gruppa-listing-item{min-width:0}
+.gruppa-listing-grid:empty{display:none}
+/* Shortcode: automatic columns on smaller screens (the widget sets them per device). */
+@media (max-width:1024px){.gruppa-listing--auto .gruppa-listing-grid{grid-template-columns:repeat(min(var(--gl-cols),2),minmax(0,1fr))}}
+@media (max-width:767px){.gruppa-listing--auto .gruppa-listing-grid{grid-template-columns:minmax(0,1fr)}}
+.gruppa-listing-empty{padding:24px 0}
+.gruppa-listing-pagination{display:flex;flex-wrap:wrap;justify-content:var(--gl-pag-align,center);gap:6px;margin-top:var(--gl-gap-y)}
+.gruppa-listing-pagination .page-numbers{display:inline-flex;align-items:center;justify-content:center;min-width:36px;height:36px;padding:0 10px;border:1px solid #dcdcde;border-radius:6px;text-decoration:none;color:inherit;box-sizing:border-box}
+.gruppa-listing-pagination .page-numbers.current{background:#1d2327;border-color:#1d2327;color:#fff}
+.gruppa-listing-pagination .page-numbers.dots{border:0;min-width:0}
+.gruppa-listing-more{display:flex;justify-content:var(--gl-pag-align,center);margin-top:var(--gl-gap-y)}
+.gruppa-listing-more-button[disabled]{opacity:.6;cursor:wait}
+.gruppa-listing-message{padding:12px 16px;border:1px dashed #c3c4c7;border-radius:6px}
+.gruppa-listing-card{padding:16px;border:1px solid #dcdcde;border-radius:8px}
+.gruppa-listing-title{margin:0;font-size:1.1em}
+.gruppa-listing.is-loading .gruppa-listing-grid{opacity:.45;transition:opacity .15s;pointer-events:none}
+/* Search Filters */
+.gruppa-filter-range{display:flex;gap:8px}
+.gruppa-filter-range input{flex:1 1 0;min-width:0}
+.gruppa-filters-actions{gap:12px;align-items:center;flex-wrap:wrap}
+.gruppa-form .gruppa-filters-reset{padding:0;border:0;background:none;color:inherit;font:inherit;text-decoration:underline;cursor:pointer;opacity:.75}
+.gruppa-form .gruppa-filters-reset:hover{opacity:1;background:none;color:inherit}
+.gruppa-filters-wrap fieldset{display:flex;flex-direction:column;gap:6px}
