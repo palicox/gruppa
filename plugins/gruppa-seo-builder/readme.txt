@@ -5,7 +5,7 @@ Plugin URI: https://gruppa.cloud
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.4.2
+Stable tag: 1.4.3
 License: GPLv2 or later
 
 SEO title, meta description, robots, canonical, Open Graph, Twitter / X and JSON-LD for WordPress pages, posts and custom post types, items of JetEngine CCT with a single page and Gruppa CMS content types, with Google and Facebook preview and an SEO box in the editor.
@@ -34,6 +34,9 @@ Plugin Gruppa Tools, menu Gruppa Tools → SEO Builder. Funguje na každom WordP
 * Web: titulok, robots, canonical cez filtre WordPressu, meta description a keywords, og:*, twitter:*, JSON-LD (WebSite, WebPage, Article, Organization), noindex záznamy mimo sitemapy. Pri aktívnom Yoast / Rank Math / AIOSEO / SEOPress nič nevypisuje.
 
 == Changelog ==
+
+= 1.4.3 =
+* Hub 1.6.2: rovnaká medzera medzi úchytom a checkboxom v zoznamoch.
 
 = 1.4.2 =
 * Tlačidlo „Add SEO“ namiesto „Add New“. Hub 1.6.1: jednotné tlačidlá (výška inputu, bez tieňa a outline, hover modré pozadie).

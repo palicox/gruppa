@@ -3,7 +3,7 @@
  * Plugin Name:       Gruppa SEO Builder
  * Plugin URI:        https://gruppa.cloud
  * Description:       SEO title, meta description, robots, canonical, Open Graph, Twitter / X and JSON-LD for WordPress pages, posts, custom post types and term archives, items of JetEngine CCT with a single page and Gruppa CMS content types: templates per type, redirects 301, sitemap settings and breadcrumbs, with Google and Facebook preview. Part of Gruppa Tools; works with or without Gruppa CMS.
- * Version:           1.4.2
+ * Version:           1.4.3
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Author:            Gruppa Taxonomy
@@ -14,7 +14,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'GRUPPA_SEO_PLUGIN_VERSION', '1.4.2' );
+define( 'GRUPPA_SEO_PLUGIN_VERSION', '1.4.3' );
 define( 'GRUPPA_SEO_PLUGIN_FILE', __FILE__ );
 define( 'GRUPPA_SEO_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'GRUPPA_SEO_PLUGIN_URL', plugin_dir_url( __FILE__ ) );

@@ -3,7 +3,7 @@
  * Plugin Name:       Gruppa Import/Export
  * Plugin URI:        https://gruppa.cloud
  * Description:       CSV and JSON import and export for Gruppa CMS types, SEO Builder, JetEngine CCT and WordPress post types with ACF fields: automatic field mapping, overwrite by ID, author choice, media by URL, chunked import. Part of Gruppa Tools; works with or without Gruppa CMS.
- * Version:           1.3.2
+ * Version:           1.3.3
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Author:            Gruppa Taxonomy
@@ -18,7 +18,7 @@ if ( defined( 'GRUPPA_IE_VERSION' ) ) {
 	return; // Another copy is already loaded (Gruppa CMS 0.29–0.30 with a newer built-in Data Tools, or the old Gruppa Tools bundle).
 }
 
-define( 'GRUPPA_IE_VERSION', '1.3.2' );
+define( 'GRUPPA_IE_VERSION', '1.3.3' );
 define( 'GRUPPA_IE_FILE', __FILE__ );
 define( 'GRUPPA_IE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'GRUPPA_IE_URL', plugin_dir_url( __FILE__ ) );

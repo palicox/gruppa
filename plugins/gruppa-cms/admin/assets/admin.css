@@ -771,3 +771,9 @@
 .gruppa-wrap input[type=text],.gruppa-wrap input[type=number],.gruppa-wrap input[type=date],.gruppa-wrap input[type=email],.gruppa-wrap input[type=url],.gruppa-wrap input[type=password],.gruppa-wrap input[type=search],.gruppa-wrap input[type=time],.gruppa-wrap input[type=tel],.gruppa-wrap input[type=datetime-local],.gruppa-wrap select{min-height:32px}
 .wp-core-ui .gruppa-wrap .wp-editor-tabs .button,.gruppa-wrap .wp-editor-tools .button,.gruppa-wrap .mce-container .button,.gruppa-wrap .quicktags-toolbar .button{height:auto;min-height:0;line-height:inherit;padding:revert;display:inline-block}
 .gruppa-wrap .wp-media-buttons .button{height:32px}
+
+/* 0.33.1 — lists: same gap between the drag handle and the checkbox in every row */
+.gruppa-wrap .gruppa-table .gruppa-col-handle{padding-right:0}
+.gruppa-wrap .gruppa-table .gruppa-col-handle + .check-column{padding-left:12px;padding-right:0;width:20px}
+.gruppa-wrap .gruppa-table .check-column input[type=checkbox]{margin:0;vertical-align:middle}
+.gruppa-wrap .gruppa-table .gruppa-handle{vertical-align:middle}
