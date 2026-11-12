@@ -90,7 +90,7 @@ class Gruppa_Admin_Forms {
 		}
 		?>
 		<h1 class="wp-heading-inline">Forms</h1>
-		<a href="<?php echo esc_url( $this->url( array( 'view' => 'edit' ) ) ); ?>" class="page-title-action">Add New</a>
+		<a href="<?php echo esc_url( $this->url( array( 'view' => 'edit' ) ) ); ?>" class="page-title-action">Add Form</a>
 		<hr class="wp-header-end">
 
 		<?php Gruppa_Admin::status_filter( $this->url(), $status, Gruppa_Forms::counts() ); ?>
@@ -189,7 +189,7 @@ class Gruppa_Admin_Forms {
 		<h1 class="wp-heading-inline"><?php echo $is_new ? 'Add Form' : esc_html( $form->name ); ?></h1>
 		<a href="<?php echo esc_url( $this->url() ); ?>" class="page-title-action">Back</a>
 		<?php if ( $form ) : ?>
-			<a href="<?php echo esc_url( $this->url( array( 'view' => 'edit' ) ) ); ?>" class="page-title-action">Add New</a>
+			<a href="<?php echo esc_url( $this->url( array( 'view' => 'edit' ) ) ); ?>" class="page-title-action">Add Form</a>
 			<a href="<?php echo esc_url( Gruppa_Admin::duplicate_url( 'form', $form->id ) ); ?>" class="page-title-action">Duplicate</a>
 		<?php endif; ?>
 		<hr class="wp-header-end">

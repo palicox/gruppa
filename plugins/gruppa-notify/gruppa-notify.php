@@ -3,7 +3,7 @@
  * Plugin Name:       Gruppa Notify
  * Plugin URI:        https://gruppa.cloud
  * Description:       Gruppa Tools add-on. Native Web Push notifications without external services: notifications after Gruppa CMS Form Builder, JetFormBuilder and Contact Form 7 forms for chosen users and roles, optional push for new items of a Gruppa CMS entity or JetEngine CCT, log of sent notifications, subscribe button via [gruppa_notify_button] and device list.
- * Version:           1.4.2
+ * Version:           1.4.3
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            Gruppa Taxonomy
@@ -18,7 +18,7 @@ if ( defined( 'GRUPPA_NOTIFY_VERSION' ) ) {
 	return; // Another copy is already loaded.
 }
 
-define( 'GRUPPA_NOTIFY_VERSION', '1.4.2' );
+define( 'GRUPPA_NOTIFY_VERSION', '1.4.3' );
 define( 'GRUPPA_NOTIFY_FILE', __FILE__ );
 define( 'GRUPPA_NOTIFY_DIR', plugin_dir_path( __FILE__ ) );
 define( 'GRUPPA_NOTIFY_URL', plugin_dir_url( __FILE__ ) );

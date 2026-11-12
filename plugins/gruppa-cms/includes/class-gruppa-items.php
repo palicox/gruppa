@@ -302,7 +302,8 @@ class Gruppa_Items {
 			}
 			list( $val, $err ) = Gruppa_Fields::sanitize_value( $f, $raw );
 			$row[ $f['key'] ] = $val;
-			if ( $err ) {
+			// 0.33: a field hidden by its conditions is not checked (Required, limits).
+			if ( $err && Gruppa_Fields::condition_met( $f, $values ) ) {
 				$errors[] = $err;
 			}
 		}

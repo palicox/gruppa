@@ -85,7 +85,7 @@ class Gruppa_Admin_Filters {
 		}
 		?>
 		<h1 class="wp-heading-inline">Filters</h1>
-		<a href="<?php echo esc_url( self::url( array( 'view' => 'edit' ) ) ); ?>" class="page-title-action">Add New</a>
+		<a href="<?php echo esc_url( self::url( array( 'view' => 'edit' ) ) ); ?>" class="page-title-action">Add Filter Group</a>
 		<hr class="wp-header-end">
 		<?php Gruppa_Admin::status_filter( self::url(), $status, Gruppa_Filters::counts() ); ?>
 		<table class="wp-list-table widefat fixed gruppa-table">
@@ -198,7 +198,7 @@ class Gruppa_Admin_Filters {
 		<h1 class="wp-heading-inline"><?php echo $g ? esc_html( $g->name ) : 'Add Filter Group'; ?></h1>
 		<a href="<?php echo esc_url( self::url() ); ?>" class="page-title-action">Back</a>
 		<?php if ( $g ) : ?>
-			<a href="<?php echo esc_url( self::url( array( 'view' => 'edit' ) ) ); ?>" class="page-title-action">Add New</a>
+			<a href="<?php echo esc_url( self::url( array( 'view' => 'edit' ) ) ); ?>" class="page-title-action">Add Filter Group</a>
 			<a href="<?php echo esc_url( Gruppa_Admin::duplicate_url( 'filters', $g->id ) ); ?>" class="page-title-action">Duplicate</a>
 		<?php endif; ?>
 		<hr class="wp-header-end">

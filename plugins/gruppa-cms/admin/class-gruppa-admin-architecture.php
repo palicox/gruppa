@@ -236,8 +236,8 @@ class Gruppa_Admin_Architecture {
 						</td>
 						<td class="gruppa-dash-actions">
 							<?php if ( $live ) : ?>
-								<a href="<?php echo esc_url( $items_url ); ?>">All items</a> ·
-								<a href="<?php echo esc_url( add_query_arg( 'view', 'edit', $items_url ) ); ?>">Add item</a> ·
+								<a href="<?php echo esc_url( $items_url ); ?>">All items</a> |
+								<a href="<?php echo esc_url( add_query_arg( 'view', 'edit', $items_url ) ); ?>">Add item</a> |
 							<?php endif; ?>
 							<a href="<?php echo esc_url( $edit_url ); ?>">Edit type</a>
 						</td>

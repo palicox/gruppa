@@ -199,14 +199,14 @@ class Gruppa_Admin_Dashboard {
 
 					<h2 class="gruppa-fields-title">Shortcuts</h2>
 					<div class="gruppa-card gruppa-dash-links">
-						<a href="<?php echo esc_url( admin_url( 'admin.php?page=' . Gruppa_Admin::PAGE . '&view=edit' ) ); ?>"><strong>New content type</strong><span>Items with a page — Page, Post or Custom Types</span></a>
-						<a href="<?php echo esc_url( admin_url( 'admin.php?page=' . Gruppa_Admin::DATA_PAGE . '&view=edit' ) ); ?>"><strong>New data type</strong><span>Values to pick — categories, records, groups</span></a>
-						<a href="<?php echo esc_url( admin_url( 'admin.php?page=' . Gruppa_Admin_Listings::PAGE . '&view=edit' ) ); ?>"><strong>New listing</strong><span>Grid of items with a card template</span></a>
-						<a href="<?php echo esc_url( admin_url( 'admin.php?page=' . Gruppa_Admin_Filters::PAGE . '&view=edit' ) ); ?>"><strong>New filter group</strong><span>Search, select, range and date filters</span></a>
+						<a href="<?php echo esc_url( admin_url( 'admin.php?page=' . Gruppa_Admin::PAGE . '&view=edit' ) ); ?>"><strong>Add Content Type</strong><span>Items with a page — Page, Post or Custom Types</span></a>
+						<a href="<?php echo esc_url( admin_url( 'admin.php?page=' . Gruppa_Admin::DATA_PAGE . '&view=edit' ) ); ?>"><strong>Add Data Type</strong><span>Values to pick — categories, records, groups</span></a>
+						<a href="<?php echo esc_url( admin_url( 'admin.php?page=' . Gruppa_Admin_Listings::PAGE . '&view=edit' ) ); ?>"><strong>Add Listing</strong><span>Grid of items with a card template</span></a>
+						<a href="<?php echo esc_url( admin_url( 'admin.php?page=' . Gruppa_Admin_Filters::PAGE . '&view=edit' ) ); ?>"><strong>Add Filter Group</strong><span>Search, select, range and date filters</span></a>
 						<?php if ( class_exists( 'Gruppa_TB_DB' ) ) : ?>
-							<a href="<?php echo esc_url( admin_url( 'admin.php?page=gruppa-table-builder&view=edit' ) ); ?>"><strong>New table</strong><span>Items or Repeater rows as a table</span></a>
+							<a href="<?php echo esc_url( admin_url( 'admin.php?page=gruppa-table-builder&view=edit' ) ); ?>"><strong>Add Table</strong><span>Items or Repeater rows as a table</span></a>
 						<?php endif; ?>
-						<a href="<?php echo esc_url( admin_url( 'admin.php?page=' . Gruppa_Admin_Forms::PAGE . '&view=edit' ) ); ?>"><strong>New form</strong><span>Contact, reservation, registration, My profile</span></a>
+						<a href="<?php echo esc_url( admin_url( 'admin.php?page=' . Gruppa_Admin_Forms::PAGE . '&view=edit' ) ); ?>"><strong>Add Form</strong><span>Contact, reservation, registration, My profile</span></a>
 						<?php if ( class_exists( 'Gruppa_SEO' ) ) : ?>
 							<a href="<?php echo esc_url( admin_url( 'admin.php?page=gruppa-seo&tab=settings' ) ); ?>"><strong>SEO settings</strong><span>Title template, default image, organization</span></a>
 						<?php endif; ?>

@@ -5,7 +5,7 @@ Plugin URI: https://gruppa.cloud
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.32.5
+Stable tag: 0.33.0
 License: GPLv2 or later
 
 Data layer for WordPress: content types and data types in their own database tables with a field builder, listings, filters and forms, REST API, access rules, Elementor widgets, dynamic tags and Block Bindings.
@@ -23,6 +23,15 @@ Gruppa Tools (samostatné pluginy, spoločné menu Gruppa Tools hneď pod Gruppa
 * Strom menu: settings.menu entity ({ manual: 1, parents: [...] }, bez kľúča = podľa väzieb), poradie = order_index. DB sa v 0.29 nemení (DB 12).
 
 == Changelog ==
+
+= 0.33.0 =
+* Meta fields: hlavička poľa — úchyt | Label | slug | typ, vpravo ikona kopírovania a šípka. Nové: kopírovanie poľa (vloží sa hneď pod originál s kľúčom *_copy).
+* Meta fields: podmienky zobrazenia (Show item when… / podmienka / hodnota / and-or). Skryté pole sa nevaliduje ani ako povinné. Poradie na konci poľa: Condition, Item list, Required, Remove.
+* Nový typ poľa Icon (Dashicons picker ako pri Menu icon). Repeater má nové stĺpce Editor a Icon.
+* Názvy tlačidiel: Add / Edit Content Type, Add / Edit Data Type, Add Item / Edit Item, Add Listing, Add Filter Group, Add Form; skratky na Dashboarde „Add …“.
+* Structure map: akcie „All items | Add item | Edit type“. Šípky ← → sú v jednom riadku s akciami.
+* Tlačidlá: rovnaká výška ako textový input, rovnaký radius aj pri hover/focus, bez outline a tieňa, bez animácie; obrysové tlačidlá pri hover modré pozadie a biely text.
+* Čierny panel Menu aj na editácii položky. Pri novom type v hlavičke Back + Add Content/Data Type.
 
 = 0.32.5 =
 * Oprava: Menu icon — výber ikon sa znova zobrazuje celý. Box Main Settings (gruppa-boxed) už panel neoreže; hlavička boxu má zaoblené horné rohy.

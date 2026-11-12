@@ -137,14 +137,15 @@ class Gruppa_Admin {
 				'nonce' => wp_create_nonce( 'gruppa_entity_tree' ),
 				'i18n'  => array(
 					'error'    => 'The tree could not be saved. Reload the page and try again.',
-					'hasKids'  => 'This entity has entities below it. Move them first.',
-					'noParent' => 'There is no level 1 entity above to put it under.',
+					'hasKids'  => 'This type has types below it. Move them first.',
+					'noParent' => 'There is no level 1 type above to put it under.',
 				),
 			) );
 		}
 
 		if ( 0 === strpos( $page, 'gruppa-item-' ) && isset( $_GET['view'] ) && 'edit' === $_GET['view'] ) {
 			wp_enqueue_media();
+			wp_enqueue_editor(); // 0.33: Editor columns of Repeater rows (wp.editor).
 			wp_enqueue_script( 'gruppa-items', $url . 'items.js', array( 'jquery', 'jquery-ui-sortable' ), GRUPPA_CMS_VERSION, true );
 		}
 	}
@@ -445,7 +446,7 @@ class Gruppa_Admin {
 		$title = $is_cnt ? 'Content Types' : 'Data Types';
 		?>
 		<h1 class="wp-heading-inline"><?php echo esc_html( $title ); ?></h1>
-		<a href="<?php echo esc_url( $this->url( array( 'view' => 'edit' ) ) ); ?>" class="page-title-action">Add New</a>
+		<a href="<?php echo esc_url( $this->url( array( 'view' => 'edit' ) ) ); ?>" class="page-title-action"><?php echo $is_cnt ? 'Add Content Type' : 'Add Data Type'; ?></a>
 		<hr class="wp-header-end">
 
 		<?php self::status_filter( $this->url(), $status, $counts ); ?>
@@ -601,13 +602,13 @@ class Gruppa_Admin {
 		}
 		$post_types = apply_filters( 'gruppa_cms/single_post_types', $post_types );
 		?>
-		<h1 class="wp-heading-inline"><?php echo $is_new ? ( 'data' === $kind ? 'Add Data Type' : 'Add Content Type' ) : esc_html( $type->name ); ?></h1>
+		<h1 class="wp-heading-inline"><?php echo esc_html( ( $is_new ? 'Add ' : 'Edit ' ) . ( 'data' === $kind ? 'Data Type' : 'Content Type' ) ); ?><?php if ( ! $is_new ) : ?> <span class="gruppa-muted gruppa-h1-sub"><?php echo esc_html( $type->name ); ?></span><?php endif; ?></h1>
 		<a href="<?php echo esc_url( $this->url( array(), $kind ) ); ?>" class="page-title-action">Back</a>
 		<?php if ( $type && 'publish' === $type->status ) : ?>
 			<a href="<?php echo esc_url( admin_url( 'admin.php?page=' . Gruppa_Admin_Items::page_slug( $type->slug ) ) ); ?>" class="page-title-action">Items</a>
 		<?php endif; ?>
+		<a href="<?php echo esc_url( $this->url( array( 'view' => 'edit' ), $kind ) ); ?>" class="page-title-action"><?php echo 'data' === $kind ? 'Add Data Type' : 'Add Content Type'; ?></a>
 		<?php if ( $type ) : ?>
-			<a href="<?php echo esc_url( $this->url( array( 'view' => 'edit' ), $kind ) ); ?>" class="page-title-action">Add New</a>
 			<a href="<?php echo esc_url( self::duplicate_url( 'type', $type->id ) ); ?>" class="page-title-action">Duplicate</a>
 		<?php endif; ?>
 		<hr class="wp-header-end">
@@ -778,6 +779,7 @@ class Gruppa_Admin {
 		<script type="text/html" id="tmpl-gruppa-field"><?php $this->field_row( '__i__', array(), false, true ); ?></script>
 		<script type="text/html" id="tmpl-gruppa-option"><?php $this->option_row( '__i__', '__j__', array() ); ?></script>
 		<script type="text/html" id="tmpl-gruppa-sub"><?php $this->sub_row( '__i__', '__j__', array() ); ?></script>
+		<script type="text/html" id="tmpl-gruppa-cond"><?php $this->condition_row( '__i__', '__j__', array() ); ?></script>
 		<script type="text/html" id="tmpl-gruppa-group"><?php $this->group_row( '__g__', array(), Gruppa_Relations::target_options( $type ? $type->slug : '' ), 0 ); ?></script>
 		<script>window.gruppaFieldIndex = <?php echo (int) count( $fields ); ?>;window.gruppaReserved = <?php echo wp_json_encode( Gruppa_Types::RESERVED ); ?>;</script>
 		<?php
@@ -920,6 +922,48 @@ class Gruppa_Admin {
 		<?php
 	}
 
+	/**
+	 * Condition rows of a field (0.33): Show item [field] · When [operator] · [value] · [and / or].
+	 * The field list is filled by types.js from the fields being edited.
+	 */
+	private function conditions_editor( $i, $conds ) {
+		$conds = $conds ? $conds : array( array( 'field' => '', 'op' => 'is', 'value' => '', 'join' => 'and' ) );
+		ob_start();
+		echo '<div class="gruppa-conds"><div class="gruppa-cond-list">';
+		foreach ( array_values( $conds ) as $j => $c ) {
+			$this->condition_row( $i, $j, $c );
+		}
+		echo '</div><button type="button" class="button-link gruppa-cond-add">+ Add condition</button>';
+		echo '<p class="description">Show this field only when the condition is met. Empty = always shown.</p></div>';
+		return ob_get_clean();
+	}
+
+	public function condition_row( $i, $j, $c ) {
+		$c = wp_parse_args( $c, array( 'field' => '', 'op' => 'is', 'value' => '', 'join' => 'and' ) );
+		$n = 'fields[' . $i . '][conditions][' . $j . ']';
+		?>
+		<div class="gruppa-cond">
+			<select class="g-cond-field" name="<?php echo esc_attr( $n ); ?>[field]" data-value="<?php echo esc_attr( $c['field'] ); ?>" aria-label="Show item when">
+				<option value="">Show item when…</option>
+				<?php if ( '' !== $c['field'] ) : ?>
+					<option value="<?php echo esc_attr( $c['field'] ); ?>" selected><?php echo esc_html( $c['field'] ); ?></option>
+				<?php endif; ?>
+			</select>
+			<select class="g-cond-op" name="<?php echo esc_attr( $n ); ?>[op]" aria-label="Condition">
+				<?php foreach ( Gruppa_Fields::condition_ops() as $k => $l ) : ?>
+					<option value="<?php echo esc_attr( $k ); ?>" <?php selected( $c['op'], $k ); ?>><?php echo esc_html( $l ); ?></option>
+				<?php endforeach; ?>
+			</select>
+			<input type="text" class="g-cond-value" name="<?php echo esc_attr( $n ); ?>[value]" value="<?php echo esc_attr( $c['value'] ); ?>" placeholder="Write value" aria-label="Value">
+			<select class="g-cond-join" name="<?php echo esc_attr( $n ); ?>[join]" aria-label="And / or">
+				<option value="and" <?php selected( $c['join'], 'and' ); ?>>and</option>
+				<option value="or" <?php selected( $c['join'], 'or' ); ?>>or</option>
+			</select>
+			<button type="button" class="button-link gruppa-cond-remove" aria-label="Remove condition">&times;</button>
+		</div>
+		<?php
+	}
+
 	private function option_row( $i, $j, $o ) {
 		$o    = wp_parse_args( $o, array( 'value' => '', 'label' => '' ) );
 		$name = 'fields[' . $i . '][options][' . $j . ']';
@@ -971,6 +1015,7 @@ class Gruppa_Admin {
 				<span class="gruppa-field-title"><?php echo esc_html( $f['label'] ? $f['label'] : 'New field' ); ?></span>
 				<code class="gruppa-field-key"><?php echo esc_html( $f['key'] ); ?></code>
 				<span class="gruppa-field-type"><?php echo esc_html( isset( $types[ $f['type'] ] ) ? $types[ $f['type'] ] : $f['type'] ); ?></span>
+				<button type="button" class="button-link gruppa-field-copy" title="Copy field" aria-label="Copy field"><span class="dashicons dashicons-admin-page" aria-hidden="true"></span></button>
 				<span class="dashicons dashicons-arrow-down-alt2 gruppa-toggle"></span>
 			</div>
 			<div class="gruppa-field-body">
@@ -1067,8 +1112,10 @@ class Gruppa_Admin {
 					$row( 'Max files', 'media', $in( 'max_files', $f['max_files'], 'number', 'class="small-text" min="0"' ) );
 					$row( 'Max MB', 'media', $in( 'max_mb', $f['max_mb'] ? $f['max_mb'] : '', 'number', 'class="small-text" min="0" step="any"' ) );
 
-					$row( 'Required', 'text textarea editor number date time radio select checkbox media relation repeater', $cb( 'required', $f['required'] ) );
-					$row( 'Items list', 'text textarea editor number date time radio select checkbox switcher media relation repeater', $cb( 'list', $f['list'], 'Show as a column in the items list. Select, Radio, Checkbox, Relation and Switcher columns also get a filter above the list.' ) );
+					// 0.33: end of the field — Condition, Items list, Required, Remove.
+					$row( 'Condition', '*', $this->conditions_editor( $i, $f['conditions'] ) );
+					$row( 'Items list', 'text textarea editor number date time radio select checkbox switcher media relation repeater icon', $cb( 'list', $f['list'], 'Show as a column in the items list. Select, Radio, Checkbox, Relation and Switcher columns also get a filter above the list.' ) );
+					$row( 'Required', 'text textarea editor number date time radio select checkbox media relation repeater icon', $cb( 'required', $f['required'] ) );
 					?>
 				</table>
 				<p><button type="button" class="button-link button-link-delete gruppa-remove-field">Remove</button></p>

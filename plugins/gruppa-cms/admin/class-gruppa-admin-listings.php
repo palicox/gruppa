@@ -123,7 +123,7 @@ class Gruppa_Admin_Listings {
 		}
 		?>
 		<h1 class="wp-heading-inline">Listings</h1>
-		<a href="<?php echo esc_url( self::url( array( 'view' => 'edit' ) ) ); ?>" class="page-title-action">Add New</a>
+		<a href="<?php echo esc_url( self::url( array( 'view' => 'edit' ) ) ); ?>" class="page-title-action">Add Listing</a>
 		<hr class="wp-header-end">
 		<?php Gruppa_Admin::status_filter( self::url(), $status, Gruppa_Listing::counts() ); ?>
 		<table class="wp-list-table widefat fixed gruppa-table">
@@ -180,7 +180,7 @@ class Gruppa_Admin_Listings {
 		<a href="<?php echo esc_url( self::url() ); ?>" class="page-title-action">Back</a>
 		<?php if ( $l ) : ?>
 			<a href="<?php echo esc_url( $this->action_url( 'gruppa_listing_template', $l->id ) ); ?>" class="page-title-action">Edit template</a>
-			<a href="<?php echo esc_url( self::url( array( 'view' => 'edit' ) ) ); ?>" class="page-title-action">Add New</a>
+			<a href="<?php echo esc_url( self::url( array( 'view' => 'edit' ) ) ); ?>" class="page-title-action">Add Listing</a>
 			<a href="<?php echo esc_url( Gruppa_Admin::duplicate_url( 'listing', $l->id ) ); ?>" class="page-title-action">Duplicate</a>
 		<?php endif; ?>
 		<hr class="wp-header-end">

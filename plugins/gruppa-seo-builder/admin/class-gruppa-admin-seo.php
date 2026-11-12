@@ -347,7 +347,7 @@ class Gruppa_Admin_SEO {
 			}
 			?>
 			<h1 class="wp-heading-inline">SEO Builder</h1>
-			<a href="<?php echo esc_url( self::url( array( 'view' => 'edit' ) ) ); ?>" class="page-title-action">Add New</a>
+			<a href="<?php echo esc_url( self::url( array( 'view' => 'edit' ) ) ); ?>" class="page-title-action">Add SEO</a>
 			<hr class="wp-header-end">
 			<nav class="gruppa-tabs">
 				<a href="<?php echo esc_url( self::url() ); ?>" class="<?php echo 'list' === $tab ? 'is-active' : ''; ?>">SEO <span class="gruppa-tab-count"><?php echo (int) Gruppa_SEO::count(); ?></span></a>
@@ -393,7 +393,7 @@ class Gruppa_Admin_SEO {
 			</thead>
 			<tbody>
 			<?php if ( ! $rows ) : ?>
-				<tr><td colspan="6">No SEO yet. Add New → choose an item (e.g. Stránky → Domov).</td></tr>
+				<tr><td colspan="6">No SEO yet. Add SEO → choose an item (e.g. Stránky → Domov).</td></tr>
 			<?php endif; ?>
 			<?php foreach ( $rows as $r ) :
 				list( $title, $tname ) = $this->owner_label( $r, $types );
@@ -475,7 +475,7 @@ class Gruppa_Admin_SEO {
 			list( $ct, $ci ) = Gruppa_SEO_Owners::split( $cur );
 			?>
 			<a href="<?php echo esc_url( Gruppa_SEO_Owners::edit_url( $ct, $ci ) ); ?>" class="page-title-action">Edit item</a>
-			<a href="<?php echo esc_url( self::url( array( 'view' => 'edit' ) ) ); ?>" class="page-title-action">Add New</a>
+			<a href="<?php echo esc_url( self::url( array( 'view' => 'edit' ) ) ); ?>" class="page-title-action">Add SEO</a>
 		<?php endif; ?>
 		<hr class="wp-header-end">
 
@@ -682,7 +682,7 @@ class Gruppa_Admin_SEO {
 									<label><input type="checkbox" name="seo[post_types][]" value="<?php echo esc_attr( $pt ); ?>" <?php checked( in_array( $pt, (array) $s['post_types'], true ) ); ?>> <?php echo esc_html( $label ); ?></label>
 								<?php endforeach; ?>
 							</div>
-							<p class="description">Pages of these post types can have SEO (list, Add New, box SEO in the editor). Items of Gruppa CMS content types and JetEngine CCT with a single page always can.</p>
+							<p class="description">Pages of these post types can have SEO (list, Add SEO, box SEO in the editor). Items of Gruppa CMS content types and JetEngine CCT with a single page always can.</p>
 						</td>
 					</tr>
 					<tr>

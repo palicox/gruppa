@@ -1,4 +1,4 @@
-/* Gruppa Tools hub 1.6.0 — copy of the Gruppa CMS 0.32.4 admin.css (used only when Gruppa CMS is not active). */
+/* Gruppa Tools hub 1.6.1 — copy of the Gruppa CMS 0.33.0 admin.css (used only when Gruppa CMS is not active). */
 /* Menu separator */
 #adminmenu a[href="admin.php?page=gruppa-sep"]{pointer-events:none;cursor:default;padding:0!important;height:0;margin:6px 12px;border-top:1px solid rgba(240,246,252,.15)}
 
@@ -716,3 +716,59 @@
 .gruppa-arch-nav-add{border-top-color:#2A2B36}
 .gruppa-wrap .gruppa-dash-links a strong{color:#2952EA}
 .gruppa-wrap .gruppa-dash-links a:hover strong{color:#0604CD}
+/* ===== 0.32.5 — boxes with a form do not clip dropdowns (Menu icon picker); rounded head instead of overflow ===== */
+.gruppa-wrap .gruppa-boxed:not(.gruppa-box){overflow:visible}
+.gruppa-wrap .gruppa-boxed:not(.gruppa-box) > .gruppa-box-head{border-radius:8px 8px 0 0}
+/* ===== 0.32.5 — Menu panel next to the items list; open type highlighted ===== */
+.gruppa-wrap .gruppa-arch-nav a.is-current{background:#2952EA;color:#ffffff}
+.gruppa-arch-nav a.is-current .dashicons,.gruppa-arch-nav a.is-current .gruppa-arch-nav-n{color:#ffffff}
+.gruppa-items-layout .gruppa-arch-main{min-width:0}
+/* 0.32.5 — items list: Bulk actions, Apply and the count under the list */
+.gruppa-wrap .gruppa-bulk-bar.bottom{margin:24px 0 0}
+.gruppa-items-layout .gruppa-list-filters{margin:0 0 24px}
+
+/* 0.33.0 — field head, conditions, unified buttons */
+.gruppa-field-head{gap:16px}
+.gruppa-field-head .gruppa-field-title{flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gruppa-field-head .gruppa-field-key{flex:0 1 auto;background:none;padding:0;font-size:12px}
+.gruppa-field-head .gruppa-field-type{flex:0 0 auto;min-width:0;text-align:left;color:#575770}
+.gruppa-field-head .gruppa-field-copy{margin-left:auto;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;padding:0;color:#8c8f94;cursor:pointer;border:0;background:none}
+.gruppa-field-head .gruppa-field-copy:hover,.gruppa-field-head .gruppa-field-copy:focus{color:#2952EA;box-shadow:none;outline:0}
+.gruppa-field-head .gruppa-field-copy .dashicons{font-size:18px;width:18px;height:18px}
+.gruppa-field-head .gruppa-toggle{flex:0 0 20px}
+
+.gruppa-conds{display:flex;flex-direction:column;gap:8px}
+.gruppa-cond-list{display:flex;flex-direction:column;gap:8px}
+.gruppa-cond-list:empty{display:none}
+.gruppa-cond{display:grid;grid-template-columns:25fr 25fr 40fr 10fr 24px;gap:8px;align-items:center}
+.gruppa-wrap .gruppa-cond select,.gruppa-wrap .gruppa-cond input[type=text]{width:100%;max-width:none;min-width:0;margin:0}
+.gruppa-cond input:disabled{background:#f6f7f7}
+.gruppa-cond-remove{font-size:18px;line-height:1;text-decoration:none;padding:0;border:0;background:none;cursor:pointer}
+.gruppa-conds .gruppa-cond-add{align-self:flex-start}
+.gruppa-field-row.is-cond-hidden,.gruppa-form-table tr.is-cond-hidden{display:none}
+
+/* Items: Icon field */
+.gruppa-icon-field .gruppa-icon-value .dashicons{font-size:20px;width:20px;height:20px}
+.gruppa-icon-field .gruppa-icon-reset{text-decoration:none}
+
+/* Tree lists: ← → on the same line as the actions */
+.gruppa-tree-table td.gruppa-col-actions{white-space:nowrap}
+.gruppa-tree-moves{margin:0 0 0 8px;vertical-align:baseline}
+.gruppa-h1-sub{font-size:14px;font-weight:400;margin-left:8px}
+
+/* Buttons — one height (= text input), one radius, no outline, no shadow, no transition */
+.gruppa-wrap .button,.gruppa-wrap .page-title-action,.gruppa-wrap .button-primary,.gruppa-wrap .button-secondary,
+.gruppa-wrap input[type=submit].button{height:32px;min-height:32px;line-height:30px;padding:0 16px;box-sizing:border-box;border-radius:var(--g-r-field)!important;box-shadow:none!important;outline:0!important;transition:none!important;vertical-align:middle;display:inline-flex;align-items:center;justify-content:center;gap:6px;text-shadow:none}
+.gruppa-wrap .button:hover,.gruppa-wrap .button:focus,.gruppa-wrap .button:active,
+.gruppa-wrap .page-title-action:hover,.gruppa-wrap .page-title-action:focus,.gruppa-wrap .page-title-action:active{box-shadow:none!important;outline:0!important;border-radius:var(--g-r-field)!important;transform:none}
+.gruppa-wrap .button:not(.button-primary):hover,.gruppa-wrap .button:not(.button-primary):focus,.gruppa-wrap .button:not(.button-primary):active,
+.gruppa-wrap .page-title-action:hover,.gruppa-wrap .page-title-action:focus,.gruppa-wrap .page-title-action:active{background:#2952EA;border-color:#2952EA;color:#fff}
+.gruppa-wrap .button:not(.button-primary):hover .dashicons,.gruppa-wrap .button:not(.button-primary):focus .dashicons{color:#fff}
+.gruppa-wrap .button-primary:active{background:#0604CD;border-color:#0604CD}
+.gruppa-wrap .button[disabled],.gruppa-wrap .button.disabled,.gruppa-wrap .button[disabled]:hover{background:#f6f7f7!important;border-color:#dcdcde!important;color:#a7aaad!important}
+.gruppa-wrap .wrap .page-title-action,.gruppa-wrap h1 .page-title-action{top:0;margin-left:8px}
+.gruppa-wrap .gruppa-box-head .button{height:24px;min-height:24px;line-height:22px;padding:0 10px}
+.gruppa-wrap .button-link,.gruppa-wrap .button-link:focus{box-shadow:none;outline:0;transition:none}
+.gruppa-wrap input[type=text],.gruppa-wrap input[type=number],.gruppa-wrap input[type=date],.gruppa-wrap input[type=email],.gruppa-wrap input[type=url],.gruppa-wrap input[type=password],.gruppa-wrap input[type=search],.gruppa-wrap input[type=time],.gruppa-wrap input[type=tel],.gruppa-wrap input[type=datetime-local],.gruppa-wrap select{min-height:32px}
+.wp-core-ui .gruppa-wrap .wp-editor-tabs .button,.gruppa-wrap .wp-editor-tools .button,.gruppa-wrap .mce-container .button,.gruppa-wrap .quicktags-toolbar .button{height:auto;min-height:0;line-height:inherit;padding:revert;display:inline-block}
+.gruppa-wrap .wp-media-buttons .button{height:32px}

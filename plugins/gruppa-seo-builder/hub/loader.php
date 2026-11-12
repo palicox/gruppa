@@ -17,7 +17,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$gruppa_tools_hub_version = '1.6.0';
+$gruppa_tools_hub_version = '1.6.1';
 
 if ( empty( $GLOBALS['gruppa_tools_hub'] ) || version_compare( $GLOBALS['gruppa_tools_hub']['version'], $gruppa_tools_hub_version, '<' ) ) {
 	$GLOBALS['gruppa_tools_hub'] = array(

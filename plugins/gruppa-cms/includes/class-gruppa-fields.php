@@ -18,8 +18,79 @@ class Gruppa_Fields {
 			'media'    => 'Media',
 			'relation' => 'Relation',
 			'repeater' => 'Repeater',
+			'icon'     => 'Icon',
 			'html'     => 'HTML',
 		);
+	}
+
+	/**
+	 * Conditions (0.33): operators of "Show item … When …".
+	 * empty / not_empty need no value.
+	 */
+	public static function condition_ops() {
+		return array(
+			'is'           => 'is',
+			'is_not'       => 'is not',
+			'contains'     => 'contains',
+			'not_contains' => 'does not contain',
+			'empty'        => 'is empty',
+			'not_empty'    => 'is not empty',
+			'gt'           => 'greater than',
+			'lt'           => 'less than',
+		);
+	}
+
+	/**
+	 * Is the field shown for these values? Conditions are evaluated left to right; each row's join (and / or)
+	 * links it with the next row. No condition = always shown.
+	 *
+	 * @param array $f      Field definition.
+	 * @param array $values Raw values keyed by field key (as posted).
+	 */
+	public static function condition_met( $f, $values ) {
+		$conds = isset( $f['conditions'] ) ? (array) $f['conditions'] : array();
+		if ( ! $conds ) {
+			return true;
+		}
+		$result = null;
+		$join   = 'and';
+		foreach ( $conds as $c ) {
+			$v = isset( $values[ $c['field'] ] ) ? $values[ $c['field'] ] : '';
+			$v = is_array( $v ) ? array_values( array_filter( array_map( 'strval', $v ), 'strlen' ) ) : trim( (string) $v );
+			$s = is_array( $v ) ? implode( ',', $v ) : $v;
+			$w = (string) $c['value'];
+			switch ( $c['op'] ) {
+				case 'is':
+					$ok = is_array( $v ) ? in_array( $w, $v, true ) : mb_strtolower( $s ) === mb_strtolower( $w );
+					break;
+				case 'is_not':
+					$ok = is_array( $v ) ? ! in_array( $w, $v, true ) : mb_strtolower( $s ) !== mb_strtolower( $w );
+					break;
+				case 'contains':
+					$ok = '' !== $w && false !== mb_stripos( $s, $w );
+					break;
+				case 'not_contains':
+					$ok = '' === $w || false === mb_stripos( $s, $w );
+					break;
+				case 'empty':
+					$ok = '' === $s || '0' === $s;
+					break;
+				case 'not_empty':
+					$ok = '' !== $s && '0' !== $s;
+					break;
+				case 'gt':
+					$ok = is_numeric( $s ) && is_numeric( $w ) && $s + 0 > $w + 0;
+					break;
+				case 'lt':
+					$ok = is_numeric( $s ) && is_numeric( $w ) && $s + 0 < $w + 0;
+					break;
+				default:
+					$ok = true;
+			}
+			$result = null === $result ? $ok : ( 'or' === $join ? ( $result || $ok ) : ( $result && $ok ) );
+			$join   = $c['join'];
+		}
+		return (bool) $result;
 	}
 
 	/** Field types a Repeater row can hold. */
@@ -33,6 +104,8 @@ class Gruppa_Fields {
 			'switcher' => 'Switcher',
 			'select'   => 'Select',
 			'media'    => 'Image / file',
+			'editor'   => 'Editor',
+			'icon'     => 'Icon',
 		);
 	}
 
@@ -110,6 +183,7 @@ class Gruppa_Fields {
 			'list'          => false,
 			'html'          => '',
 			'sub'           => array(),
+			'conditions'    => array(),
 		);
 	}
 
@@ -148,6 +222,26 @@ class Gruppa_Fields {
 			'required'    => ! empty( $f['required'] ),
 			'list'        => ! empty( $f['list'] ) && ! ( 'text' === $type && isset( $f['format'] ) && 'password' === $f['format'] ),
 		);
+
+		// Conditions (0.33): Show item [field] When [op] [value] [and / or].
+		$out['conditions'] = array();
+		foreach ( (array) ( isset( $f['conditions'] ) ? $f['conditions'] : array() ) as $c ) {
+			$cf = Gruppa_Types::sanitize_key( isset( $c['field'] ) ? $c['field'] : '' );
+			$op = isset( $c['op'], self::condition_ops()[ $c['op'] ] ) ? $c['op'] : 'is';
+			if ( '' === $cf || $cf === $out['key'] ) {
+				continue;
+			}
+			$out['conditions'][] = array(
+				'field' => $cf,
+				'op'    => $op,
+				'value' => in_array( $op, array( 'empty', 'not_empty' ), true ) ? '' : sanitize_text_field( isset( $c['value'] ) ? $c['value'] : '' ),
+				'join'  => isset( $c['join'] ) && 'or' === $c['join'] ? 'or' : 'and',
+			);
+		}
+
+		if ( 'icon' === $type ) {
+			$out['default'] = in_array( $out['default'], Gruppa_Menu::icons(), true ) ? $out['default'] : '';
+		}
 
 		if ( 'text' === $type ) {
 			$out['format'] = isset( $f['format'], self::formats()[ $f['format'] ] ) ? $f['format'] : 'text';
@@ -431,6 +525,14 @@ class Gruppa_Fields {
 			case 'html':
 				return array( null, null );
 
+			case 'icon':
+				$raw = sanitize_key( is_array( $raw ) ? '' : (string) $raw );
+				$raw = in_array( $raw, Gruppa_Menu::icons(), true ) ? $raw : '';
+				if ( $f['required'] && '' === $raw ) {
+					return array( null, sprintf( __( '%s: required', 'gruppa-cms' ), $label ) );
+				}
+				return array( '' === $raw ? null : $raw, null );
+
 			case 'repeater':
 				$rows = is_array( $raw ) ? $raw : json_decode( (string) $raw, true );
 				$out  = array();
@@ -655,6 +757,10 @@ class Gruppa_Fields {
 				echo '<div class="gruppa-html-field">' . wp_kses_post( $f['html'] ) . '</div>';
 				return;
 
+			case 'icon':
+				self::icon_picker( $name, (string) $value, $id );
+				break;
+
 			case 'repeater':
 				self::render_repeater( $f, $value );
 				break;
@@ -802,10 +908,35 @@ class Gruppa_Fields {
 				$sv = '' === (string) $sv ? array() : array( $sv );
 			}
 			printf( '<div class="gruppa-repeater-cell gruppa-repeater-cell--%s"><span class="gruppa-repeater-label">%s</span>', esc_attr( $sd['type'] ), esc_html( $sd['label'] ) );
-			self::render_input( $sf, $sv );
+			if ( 'editor' === $sd['type'] ) {
+				// 0.33: rich text in a row — a textarea that items.js turns into a small editor (wp.editor).
+				printf( '<textarea class="gruppa-mini-editor" name="gf[%s]" rows="5">%s</textarea>', esc_attr( $sf['key'] ), esc_textarea( (string) $sv ) );
+			} else {
+				self::render_input( $sf, $sv );
+			}
 			echo '</div>';
 		}
 		echo '</div><button type="button" class="button-link gruppa-delete gruppa-repeater-remove" aria-label="Remove row">&times;</button></div>';
+	}
+
+	/** Icon field (0.33): Dashicons picker — the same icons as the Menu icon of a type. */
+	public static function icon_picker( $name, $value, $id = '' ) {
+		$value = in_array( $value, Gruppa_Menu::icons(), true ) ? $value : '';
+		?>
+		<div class="gruppa-icon-picker gruppa-icon-field">
+			<input type="hidden" class="gruppa-icon-value" name="<?php echo esc_attr( $name ); ?>" value="<?php echo esc_attr( $value ); ?>">
+			<button type="button" class="button gruppa-icon-btn"<?php echo $id ? ' id="' . esc_attr( $id ) . '"' : ''; ?> aria-expanded="false"><span class="dashicons <?php echo esc_attr( $value ? $value : 'dashicons-marker' ); ?>" aria-hidden="true"></span><span class="gruppa-icon-label"><?php echo $value ? esc_html( substr( $value, 10 ) ) : 'Choose icon'; ?></span></button>
+			<button type="button" class="button-link gruppa-icon-reset" <?php echo $value ? '' : 'hidden'; ?>>Remove</button>
+			<div class="gruppa-icon-panel" hidden>
+				<input type="search" class="gruppa-icon-search" placeholder="Search icons" aria-label="Search icons">
+				<div class="gruppa-icon-grid" role="listbox" aria-label="Icon">
+					<?php foreach ( Gruppa_Menu::icons() as $ic ) : ?>
+						<button type="button" class="gruppa-icon-opt<?php echo $ic === $value ? ' is-current' : ''; ?>" data-icon="<?php echo esc_attr( $ic ); ?>" title="<?php echo esc_attr( substr( $ic, 10 ) ); ?>" role="option"><span class="dashicons <?php echo esc_attr( $ic ); ?>" aria-hidden="true"></span></button>
+					<?php endforeach; ?>
+				</div>
+			</div>
+		</div>
+		<?php
 	}
 
 	public static function media_item( $aid ) {

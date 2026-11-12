@@ -166,7 +166,7 @@ class Gruppa_TB_Admin {
 		$counts = Gruppa_TB_DB::counts();
 		?>
 		<h1 class="wp-heading-inline">Table Builder</h1>
-		<a href="<?php echo esc_url( self::url( array( 'view' => 'edit' ) ) ); ?>" class="page-title-action">Add New Table</a>
+		<a href="<?php echo esc_url( self::url( array( 'view' => 'edit' ) ) ); ?>" class="page-title-action">Add Table</a>
 		<hr class="wp-header-end">
 		<?php self::notice(); ?>
 		<nav class="gruppa-tabs">
@@ -331,7 +331,7 @@ class Gruppa_TB_Admin {
 		<h1 class="wp-heading-inline"><?php echo $t ? esc_html( $t->name ) : 'Add Table'; ?></h1>
 		<a href="<?php echo esc_url( self::url() ); ?>" class="page-title-action">Back</a>
 		<?php if ( $t ) : ?>
-			<a href="<?php echo esc_url( self::url( array( 'view' => 'edit' ) ) ); ?>" class="page-title-action">Add New</a>
+			<a href="<?php echo esc_url( self::url( array( 'view' => 'edit' ) ) ); ?>" class="page-title-action">Add Table</a>
 		<?php endif; ?>
 		<hr class="wp-header-end">
 		<?php self::notice(); ?>

@@ -83,7 +83,7 @@ jQuery(function ($) {
 	});
 
 	$wrap.on('click', '.gruppa-field-head', function (e) {
-		if ($(e.target).closest('.gruppa-handle').length) return;
+		if ($(e.target).closest('.gruppa-handle, .gruppa-field-copy').length) return;
 		$(this).closest('.gruppa-field').toggleClass('is-open');
 	});
 
@@ -153,6 +153,93 @@ jQuery(function ($) {
 	});
 	$wrap.on('change', '.g-sub-type', function () {
 		$(this).closest('.gruppa-sub').attr('data-type', this.value);
+	});
+
+	// 0.33: Conditions — Show item [field] When [operator] [value] [and / or].
+	var condTmpl = $('#tmpl-gruppa-cond').html() || '', condIdx = 1000;
+	function fieldChoices($self) {
+		var out = [];
+		$wrap.find('> .gruppa-field').each(function () {
+			if (this === $self[0]) return;
+			var key = $.trim($(this).find('.g-key').val()), label = $.trim($(this).find('.g-label').val());
+			var type = $(this).find('.g-type').val();
+			if (key && type !== 'html') out.push([key, label || key]);
+		});
+		return out;
+	}
+	function fillConds($f) {
+		var choices = fieldChoices($f);
+		$f.find('.g-cond-field').each(function () {
+			var $s = $(this), cur = $s.val() || $s.data('value') || '';
+			$s.find('option:not(:first)').remove();
+			$.each(choices, function (_, c) {
+				$s.append($('<option>').val(c[0]).text(c[1] + ' (' + c[0] + ')'));
+			});
+			if (cur && !$s.find('option').filter(function () { return this.value === cur; }).length) {
+				$s.append($('<option>').val(cur).text(cur + ' (missing)'));
+			}
+			$s.val(cur);
+		});
+		$f.find('.g-cond-op').each(function () { opState($(this)); });
+	}
+	function opState($op) {
+		var none = $op.val() === 'empty' || $op.val() === 'not_empty';
+		$op.siblings('.g-cond-value').prop('disabled', none).attr('placeholder', none ? '—' : 'Write value');
+	}
+	$wrap.on('focus mousedown', '.g-cond-field', function () {
+		var $f = $(this).closest('.gruppa-field'), $s = $(this);
+		$s.data('value', $s.val());
+		fillConds($f);
+	});
+	$wrap.on('change', '.g-cond-op', function () { opState($(this)); });
+	$wrap.on('click', '.gruppa-cond-add', function () {
+		var $f = $(this).closest('.gruppa-field');
+		$f.find('.gruppa-cond-list').append(condTmpl.replace(/__i__/g, $f.data('index')).replace(/__j__/g, condIdx++));
+		fillConds($f);
+	});
+	$wrap.on('click', '.gruppa-cond-remove', function () {
+		var $list = $(this).closest('.gruppa-cond-list');
+		if ($list.children('.gruppa-cond').length > 1) {
+			$(this).closest('.gruppa-cond').remove();
+		} else {
+			var $c = $(this).closest('.gruppa-cond');
+			$c.find('.g-cond-field').val('').data('value', '');
+			$c.find('.g-cond-value').val('');
+			$c.find('.g-cond-op').val('is').trigger('change');
+		}
+	});
+	$wrap.find('> .gruppa-field').each(function () { fillConds($(this)); });
+
+	// 0.33: Copy a field — a new field under the original, with "_copy" key, open for editing.
+	$wrap.on('click', '.gruppa-field-copy', function (e) {
+		e.stopPropagation();
+		var $src = $(this).closest('.gruppa-field'), old = String($src.data('index')), ni = idx++;
+		var $c = $src.clone(false);
+		$c.find('.ui-sortable').removeClass('ui-sortable');
+		$c.find('input[name$="[orig_key]"]').remove();
+		$c.find('[name]').each(function () {
+			this.name = this.name.replace('fields[' + old + ']', 'fields[' + ni + ']');
+		});
+		// Values a clone does not carry: selects and textareas.
+		var $ss = $src.find('select, textarea'), $cs = $c.find('select, textarea');
+		$ss.each(function (k) { $cs.eq(k).val($(this).val()); });
+		$c.attr('data-index', ni).data('index', ni);
+		var $key = $c.find('.g-key'), $label = $c.find('.g-label');
+		var key = slugKey(($key.val() || 'field') + '_copy');
+		$key.val(key).attr('data-touched', '1');
+		$label.val(($label.val() || 'Field') + ' (copy)');
+		$c.find('.gruppa-field-title').text($label.val());
+		$c.find('.gruppa-field-key').text(key);
+		// A copy is a new field: every type is offered again.
+		var $type = $c.find('.g-type'), cur = $type.val();
+		$type.html($('#tmpl-gruppa-field').length ? $($('#tmpl-gruppa-field').html()).find('.g-type').html() : $type.html()).val(cur);
+		$wrap.find('.gruppa-field.is-open').removeClass('is-open');
+		$c.addClass('is-open').insertAfter($src);
+		applyType($c);
+		sortOptions($c);
+		sortSubs($c);
+		fillConds($c);
+		$label.trigger('focus').select();
 	});
 
 	// Type name -> slug.

@@ -5,7 +5,7 @@ Plugin URI: https://gruppa.cloud
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPLv2 or later
 
 Gruppa Tools add-on. One-off payments and subscriptions through Stripe and PayPal without SDKs or WooCommerce: Payment action for the Gruppa CMS Form Builder, [gruppa_pay] button, PHP API, verified webhooks and every payment in its own table wp_gcms_payments.
@@ -48,6 +48,9 @@ Menu Gruppa Tools → Payments (Import/Export, Theme Builder, Table Builder, SEO
 * Dáta sa mažú iba ak je zapnuté „Delete the data of a Gruppa Tools add-on when it is deleted“ v Gruppa CMS → Dashboard → Data. Platby ostávajú v Stripe / PayPal.
 
 == Changelog ==
+
+= 1.1.2 =
+* Hub 1.6.1: jednotné tlačidlá (výška inputu, rovnaký radius, bez tieňa a outline, hover modré pozadie s bielym textom).
 
 = 1.1.1 =
 * Hub Gruppa Tools 1.6.0: rovnaký vzhľad ako Gruppa CMS 0.32.4 aj bez Gruppa CMS — farby Gruppa (accent #2952EA, hover #0604CD, nadpisy #040506, text #575770), nadpisy boxov vnútri boxu v levanduľovej hlavičke, rytmus 24 px, bunky zoznamov 12 px 24 px, jemné linky.

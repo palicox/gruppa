@@ -5,7 +5,7 @@ Plugin URI: https://gruppa.cloud
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 License: GPLv2 or later
 
 CSV and JSON import and export for Gruppa CMS types, SEO Builder, JetEngine CCT and WordPress post types with ACF fields: automatic field mapping, overwrite by ID, author choice, chunked import. Without Gruppa CMS in the Gruppa Tools menu; with Gruppa CMS as Data Tools.
@@ -22,6 +22,9 @@ CSV and JSON import and export for Gruppa CMS types, SEO Builder, JetEngine CCT 
 * Tlačidlo v hlavičke zoznamu záznamov Gruppa CMS cez akciu gruppa_cms/items_header_actions.
 
 == Changelog ==
+
+= 1.3.2 =
+* Hub 1.6.1: jednotné tlačidlá (výška inputu, rovnaký radius, bez tieňa a outline, hover modré pozadie s bielym textom).
 
 = 1.3.1 =
 * Hub Gruppa Tools 1.6.0: rovnaký vzhľad ako Gruppa CMS 0.32.4 aj bez Gruppa CMS — farby Gruppa (accent #2952EA, hover #0604CD, nadpisy #040506, text #575770), nadpisy boxov vnútri boxu v levanduľovej hlavičke, rytmus 24 px, bunky zoznamov 12 px 24 px, jemné linky.

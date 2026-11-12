@@ -3,7 +3,7 @@
  * Plugin Name:       Gruppa Payments
  * Plugin URI:        https://gruppa.cloud
  * Description:       Gruppa Tools add-on. One-off payments and subscriptions through Stripe and PayPal without SDKs or WooCommerce: Payment action for Gruppa CMS forms and JetFormBuilder forms, [gruppa_pay] button, PHP API, verified webhooks and every payment in its own table wp_gcms_payments.
- * Version:           1.1.1
+ * Version:           1.1.2
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            Gruppa Taxonomy
@@ -19,7 +19,7 @@ if ( defined( 'GRUPPA_PAY_VERSION' ) ) {
 	return; // Another copy (standalone or Gruppa Tools bundle) is already loaded.
 }
 
-define( 'GRUPPA_PAY_VERSION', '1.1.1' );
+define( 'GRUPPA_PAY_VERSION', '1.1.2' );
 define( 'GRUPPA_PAY_FILE', __FILE__ );
 define( 'GRUPPA_PAY_DIR', plugin_dir_path( __FILE__ ) );
 define( 'GRUPPA_PAY_URL', plugin_dir_url( __FILE__ ) );

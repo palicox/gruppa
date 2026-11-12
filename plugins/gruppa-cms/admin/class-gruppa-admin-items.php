@@ -286,8 +286,8 @@ class Gruppa_Admin_Items {
 			<input type="search" name="s" value="<?php echo esc_attr( $s ); ?>" aria-label="Search items"><button type="submit" class="button">Search</button>
 		</form>
 		<h1 class="wp-heading-inline"><?php echo esc_html( $type->name ); ?><?php if ( $parent ) : $ptype = Gruppa_Types::get_by_slug( $parent ); ?><span class="gruppa-item-context"><?php echo esc_html( '· ' . ( $ptype ? $ptype->name : $parent ) ); ?></span><?php endif; ?></h1>
-		<a href="<?php echo esc_url( $this->url( $type, array_filter( array( 'view' => 'edit', 'group' => $gcur ? $gcur : ( $groups && 1 === count( $groups ) ? (int) $groups[0]['id'] : 0 ) ) ) ) ); ?>" class="page-title-action">Add New</a>
-		<a href="<?php echo esc_url( admin_url( 'admin.php?page=' . Gruppa_Admin::PAGE . '&view=edit&id=' . (int) $type->id ) ); ?>" class="page-title-action">Edit Entity</a>
+		<a href="<?php echo esc_url( $this->url( $type, array_filter( array( 'view' => 'edit', 'group' => $gcur ? $gcur : ( $groups && 1 === count( $groups ) ? (int) $groups[0]['id'] : 0 ) ) ) ) ); ?>" class="page-title-action">Add Item</a>
+		<a href="<?php echo esc_url( admin_url( 'admin.php?page=' . Gruppa_Admin::page_of( $type->kind ) . '&view=edit&id=' . (int) $type->id ) ); ?>" class="page-title-action"><?php echo 'data' === $type->kind ? 'Edit Data Type' : 'Edit Content Type'; ?></a>
 		<?php
 		/**
 		 * Extra header buttons of an items list (e.g. "Import/Export" from the Gruppa Import/Export add-on).
@@ -442,10 +442,10 @@ class Gruppa_Admin_Items {
 		$author = $item ? get_userdata( (int) $item->author ) : wp_get_current_user();
 		$fmt    = 'Y/m/d H:i';
 		?>
-		<h1 class="wp-heading-inline"><?php echo $is_new ? 'Add ' . esc_html( $type->name ) : esc_html( $item->title ); ?></h1>
+		<h1 class="wp-heading-inline"><?php echo $is_new ? 'Add Item' : 'Edit Item'; ?> <span class="gruppa-muted gruppa-h1-sub"><?php echo esc_html( $is_new ? $type->name : $item->title ); ?></span></h1>
 		<a href="<?php echo esc_url( $this->url( $type ) ); ?>" class="page-title-action">Back</a>
 		<?php if ( $item ) : ?>
-			<a href="<?php echo esc_url( $this->url( $type, array( 'view' => 'edit' ) ) ); ?>" class="page-title-action">Add New</a>
+			<a href="<?php echo esc_url( $this->url( $type, array( 'view' => 'edit' ) ) ); ?>" class="page-title-action">Add Item</a>
 		<?php endif; ?>
 		<hr class="wp-header-end">
 
@@ -491,16 +491,18 @@ class Gruppa_Admin_Items {
 							} else {
 								$val = Gruppa_Fields::default_value( $f );
 							}
+							// 0.33: conditions → items.js shows / hides the row while editing.
+							$cond = ' data-gkey="' . esc_attr( $f['key'] ) . '"' . ( ! empty( $f['conditions'] ) ? " data-cond='" . esc_attr( wp_json_encode( $f['conditions'] ) ) . "'" : '' );
 							?>
 							<?php if ( Gruppa_Fields::is_virtual( $f ) ) : ?>
-								<tr class="gruppa-html-row"><td colspan="2"><?php Gruppa_Fields::render_input( $f, null ); ?></td></tr>
+								<tr class="gruppa-html-row"<?php echo $cond; // phpcs:ignore ?>><td colspan="2"><?php Gruppa_Fields::render_input( $f, null ); ?></td></tr>
 							<?php elseif ( 'repeater' === $f['type'] ) : ?>
-								<tr class="gruppa-repeater-row-field">
+								<tr class="gruppa-repeater-row-field"<?php echo $cond; // phpcs:ignore ?>>
 									<th><?php echo esc_html( $f['label'] ); ?><?php echo $f['required'] ? ' <span class="gruppa-req">*</span>' : ''; ?></th>
 									<td><?php self::render_field( $f, $val ); ?></td>
 								</tr>
 							<?php else : ?>
-							<tr>
+							<tr<?php echo $cond; // phpcs:ignore ?>>
 								<th><label for="gf-<?php echo esc_attr( $f['key'] ); ?>"><?php echo esc_html( $f['label'] ); ?><?php echo $f['required'] ? ' <span class="gruppa-req">*</span>' : ''; ?></label></th>
 								<td><?php self::render_field( $f, $val ); ?></td>
 							</tr>
@@ -556,6 +558,7 @@ class Gruppa_Admin_Items {
 							<?php endif; ?>
 						</div>
 					<?php endif; ?>
+					<?php Gruppa_Admin_Architecture::nav( $type->slug, (string) Gruppa_Menu::request_parent( $type->slug ) ); // 0.33: Menu panel also while editing. ?>
 				</aside>
 			</div>
 		</form>

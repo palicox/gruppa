@@ -286,6 +286,16 @@ class Gruppa_Render {
 			case 'textarea':
 				return $o['html'] ? nl2br( esc_html( (string) $raw ) ) : (string) $raw;
 
+			case 'icon':
+				if ( ! $raw ) {
+					return '';
+				}
+				if ( ! $o['html'] ) {
+					return (string) $raw;
+				}
+				wp_enqueue_style( 'dashicons' );
+				return '<span class="dashicons ' . esc_attr( (string) $raw ) . '" aria-hidden="true"></span>';
+
 			case 'number':
 				if ( null === $raw || '' === $raw || ! is_numeric( $raw ) ) {
 					return null === $raw ? '' : (string) $raw;
@@ -324,7 +334,15 @@ class Gruppa_Render {
 						} elseif ( 'number' === $sd['type'] && '' !== (string) $v && null !== $v ) {
 							$v = (string) ( $v + 0 );
 						}
-						if ( '' !== (string) $v ) {
+						if ( '' === (string) $v ) {
+							continue;
+						}
+						if ( 'editor' === $sd['type'] ) {
+							$cells[] = $o['html'] ? wp_kses_post( (string) $v ) : wp_strip_all_tags( (string) $v );
+						} elseif ( 'icon' === $sd['type'] && $o['html'] ) {
+							wp_enqueue_style( 'dashicons' );
+							$cells[] = '<span class="dashicons ' . esc_attr( (string) $v ) . '" aria-hidden="true"></span>';
+						} else {
 							$cells[] = $o['html'] ? esc_html( (string) $v ) : (string) $v;
 						}
 					}
