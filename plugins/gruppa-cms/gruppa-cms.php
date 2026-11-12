@@ -3,7 +3,7 @@
  * Plugin Name:       Gruppa CMS
  * Plugin URI:        https://gruppa.cloud
  * Description:       Data layer for WordPress: content types and data types in their own database tables with a field builder, listings, filters and forms, REST API, access rules, Elementor widgets, dynamic tags and Block Bindings. Part of the Gruppa ecosystem with Gruppa Tools (Import/Export, Table Builder, SEO Builder, Payments, Notify).
- * Version:           0.33.3
+ * Version:           0.33.4
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Author:            Gruppa Taxonomy
@@ -52,7 +52,7 @@ add_action( 'admin_notices', function () {
 	}
 } );
 
-define( 'GRUPPA_CMS_VERSION', '0.33.3' );
+define( 'GRUPPA_CMS_VERSION', '0.33.4' );
 define( 'GRUPPA_CMS_FILE', __FILE__ );
 define( 'GRUPPA_CMS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'GRUPPA_CMS_URL', plugin_dir_url( __FILE__ ) );

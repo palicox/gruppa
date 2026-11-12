@@ -5,7 +5,7 @@ Plugin URI: https://gruppa.cloud
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.33.3
+Stable tag: 0.33.4
 License: GPLv2 or later
 
 Data layer for WordPress: content types and data types in their own database tables with a field builder, listings, filters and forms, REST API, access rules, Elementor widgets, dynamic tags and Block Bindings.
@@ -23,6 +23,9 @@ Gruppa Tools (samostatné pluginy, spoločné menu Gruppa Tools hneď pod Gruppa
 * Strom menu: settings.menu entity ({ manual: 1, parents: [...] }, bez kľúča = podľa väzieb), poradie = order_index. DB sa v 0.29 nemení (DB 12).
 
 == Changelog ==
+
+= 0.33.4 =
+* Widget Gruppa Text: Active link (Off / This page / This page and its subpages) a záložka Active vo farbách textu aj ikony. Odkaz na stránku, kde návštevník je, dostane triedu is-active a aria-current="page" — aj v listingu použitom ako menu, po načítaní ďalšej strany listingu a na cachovaných stránkach.
 
 = 0.33.3 =
 * Admin: všetky polia (textové inputy aj selecty) majú opäť rovnakú výšku 40 px.

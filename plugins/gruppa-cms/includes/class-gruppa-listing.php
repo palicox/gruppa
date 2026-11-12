@@ -617,6 +617,7 @@ class Gruppa_Listing {
 	public static function register_assets() {
 		wp_register_style( 'gruppa-listing', GRUPPA_CMS_URL . 'assets/gruppa-listing.css', array(), GRUPPA_CMS_VERSION );
 		wp_register_script( 'gruppa-listing', GRUPPA_CMS_URL . 'assets/gruppa-listing.js', array(), GRUPPA_CMS_VERSION, true );
+		wp_register_script( 'gruppa-text', GRUPPA_CMS_URL . 'assets/gruppa-text.js', array(), GRUPPA_CMS_VERSION, true );
 	}
 
 	/** HTML of the items (no wrapper). */

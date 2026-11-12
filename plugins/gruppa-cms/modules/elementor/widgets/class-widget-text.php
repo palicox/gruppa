@@ -26,6 +26,15 @@ class Gruppa_Widget_Text extends \Elementor\Widget_Base {
 		return array( Gruppa_Elementor::CATEGORY );
 	}
 
+	public function get_script_depends() {
+		return array( 'gruppa-text' ); // Active link check in the browser (cached pages, AJAX listings).
+	}
+
+	/** The output depends on the page being shown (Active link), so Elementor must not cache it. */
+	protected function is_dynamic_content(): bool {
+		return true;
+	}
+
 	public function get_keywords() {
 		return array( 'gruppa', 'text', 'heading', 'title', 'nadpis', 'link', 'odkaz' );
 	}
@@ -80,6 +89,14 @@ class Gruppa_Widget_Text extends \Elementor\Widget_Base {
 			'condition'   => array( 'content_type' => array( 'title', 'link' ) ),
 		) );
 
+		$this->add_control( 'active_match', array(
+			'label'       => 'Active link',
+			'type'        => \Elementor\Controls_Manager::SELECT,
+			'default'     => 'exact',
+			'options'     => array( '' => 'Off', 'exact' => 'This page', 'section' => 'This page and its subpages' ),
+			'description' => 'When the link goes to the page you are on, the widget gets the Active colors (Style → Text → Active). Good for menus built from a listing.',
+			'condition'   => array( 'content_type' => array( 'title', 'link' ) ),
+		) );
 		$this->add_control( 'icon', array(
 			'label'       => 'Icon',
 			'type'        => $cm::ICONS,
@@ -201,6 +218,15 @@ class Gruppa_Widget_Text extends \Elementor\Widget_Base {
 			'range'     => array( 'px' => array( 'min' => 0, 'max' => 2000, 'step' => 50 ) ),
 			'default'   => array( 'size' => 200 ),
 			'selectors' => array( "$sel, $sel a" => 'transition: color {{SIZE}}ms, background-color {{SIZE}}ms, border-color {{SIZE}}ms;' ),
+		) );
+		$this->end_controls_tab();
+
+		$this->start_controls_tab( 'color_tab_active', array( 'label' => 'Active' ) );
+		$this->add_control( 'color_active', array(
+			'label'       => 'Color',
+			'type'        => $cm::COLOR,
+			'selectors'   => array( "$sel.is-active, $sel.is-active a, $sel.is-active:hover, $sel.is-active a:hover" => 'color: {{VALUE}};' ),
+			'description' => 'Link to the page you are on (Content → Active link).',
 		) );
 		$this->end_controls_tab();
 
@@ -337,6 +363,16 @@ class Gruppa_Widget_Text extends \Elementor\Widget_Base {
 			),
 		) );
 		$this->end_controls_tab();
+		$this->start_controls_tab( 'icon_color_active', array( 'label' => 'Active' ) );
+		$this->add_control( 'icon_color_active', array(
+			'label'     => 'Color',
+			'type'      => $cm::COLOR,
+			'selectors' => array(
+				"$sel.is-active .gruppa-text__icon"     => 'color: {{VALUE}};',
+				"$sel.is-active .gruppa-text__icon svg" => 'fill: {{VALUE}};',
+			),
+		) );
+		$this->end_controls_tab();
 		$this->end_controls_tabs();
 
 		$this->end_controls_section();
@@ -423,6 +459,16 @@ class Gruppa_Widget_Text extends \Elementor\Widget_Base {
 		if ( 'textarea' !== $type && ! empty( $s['link']['url'] ) ) {
 			$this->add_link_attributes( 'link', $s['link'] );
 			$this->add_render_attribute( 'link', 'class', 'gruppa-text__link' );
+			$match = isset( $s['active_match'] ) ? (string) $s['active_match'] : 'exact';
+			if ( in_array( $match, array( 'exact', 'section' ), true ) ) {
+				// Checked here and again in the browser (gruppa-text.js) for cached pages and listings loaded by AJAX.
+				$this->add_render_attribute( 'wrapper', 'data-gruppa-active', $match );
+				if ( self::is_current( $s['link']['url'], $match ) ) {
+					$this->add_render_attribute( 'wrapper', 'class', 'is-active' );
+					$this->add_render_attribute( 'link', 'aria-current', 'page' );
+				}
+				wp_enqueue_script( 'gruppa-text' );
+			}
 			$html = '<a ' . $this->get_render_attribute_string( 'link' ) . '>' . $html . '</a>';
 		}
 
@@ -430,6 +476,43 @@ class Gruppa_Widget_Text extends \Elementor\Widget_Base {
 		$this->add_render_attribute( 'wrapper', 'class', array( 'gruppa-text', 'gruppa-text--' . $type, 'elementor-heading-title' ) );
 
 		echo '<' . $tag . ' ' . $this->get_render_attribute_string( 'wrapper' ) . '>' . $html . '</' . $tag . '>'; // phpcs:ignore WordPress.Security.EscapeOutput -- tag validated, content sanitized.
+	}
+
+	/**
+	 * Does the link go to the page being shown? Path compared without the trailing
+	 * slash; query parameters of the link must be in the current URL too.
+	 * section = also every page below it (/sluzby/ is active on /sluzby/web/).
+	 */
+	public static function is_current( $url, $match = 'exact' ) {
+		if ( wp_doing_ajax() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) || ! isset( $_SERVER['REQUEST_URI'] ) ) {
+			return false; // AJAX listing pages: the browser script decides.
+		}
+		$link = wp_parse_url( (string) $url );
+		$cur  = wp_parse_url( wp_unslash( $_SERVER['REQUEST_URI'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput -- only compared.
+		if ( ! $link || ! $cur ) {
+			return false;
+		}
+		$host = wp_parse_url( home_url(), PHP_URL_HOST );
+		if ( ! empty( $link['host'] ) && strtolower( $link['host'] ) !== strtolower( (string) $host ) ) {
+			return false;
+		}
+		if ( empty( $link['path'] ) && empty( $link['query'] ) ) {
+			return false; // "#" or an anchor only.
+		}
+		$lp = '/' . trim( isset( $link['path'] ) ? $link['path'] : '', '/' );
+		$cp = '/' . trim( isset( $cur['path'] ) ? rawurldecode( $cur['path'] ) : '', '/' );
+		$lp = rawurldecode( $lp );
+		$ok = $lp === $cp || ( 'section' === $match && '/' !== $lp && 0 === strpos( $cp . '/', $lp . '/' ) );
+		if ( $ok && ! empty( $link['query'] ) ) {
+			parse_str( $link['query'], $lq );
+			parse_str( isset( $cur['query'] ) ? $cur['query'] : '', $cq );
+			foreach ( $lq as $k => $v ) {
+				if ( ! isset( $cq[ $k ] ) || (string) $cq[ $k ] !== (string) $v ) {
+					return false;
+				}
+			}
+		}
+		return $ok;
 	}
 
 	/**
