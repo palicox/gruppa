@@ -558,7 +558,6 @@ class Gruppa_Admin_Items {
 							<?php endif; ?>
 						</div>
 					<?php endif; ?>
-					<?php Gruppa_Admin_Architecture::nav( $type->slug, (string) Gruppa_Menu::request_parent( $type->slug ) ); // 0.33: Menu panel also while editing. ?>
 				</aside>
 			</div>
 		</form>

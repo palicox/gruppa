@@ -5,7 +5,7 @@ Plugin URI: https://gruppa.cloud
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.33.1
+Stable tag: 0.33.2
 License: GPLv2 or later
 
 Data layer for WordPress: content types and data types in their own database tables with a field builder, listings, filters and forms, REST API, access rules, Elementor widgets, dynamic tags and Block Bindings.
@@ -23,6 +23,10 @@ Gruppa Tools (samostatné pluginy, spoločné menu Gruppa Tools hneď pod Gruppa
 * Strom menu: settings.menu entity ({ manual: 1, parents: [...] }, bez kľúča = podľa väzieb), poradie = order_index. DB sa v 0.29 nemení (DB 12).
 
 == Changelog ==
+
+= 0.33.2 =
+* Repeater: typy stĺpcov v rovnakom poradí ako pri pridaní poľa (Text, Textarea, Editor, Number, Date, Time, Select, Switcher, Media, Icon); „Image / file“ sa volá Media.
+* Editácia položky: vpravo len Publish a SEO, panel Menu ostáva pri zozname položiek a v Architecture.
 
 = 0.33.1 =
 * Zoznamy: rovnaká medzera 12px medzi úchytom a checkboxom v každom riadku aj v hlavičke.

@@ -96,15 +96,16 @@ class Gruppa_Fields {
 	/** Field types a Repeater row can hold. */
 	public static function sub_types() {
 		return array(
+			// Same order as types() (the Add Field list); types a row cannot hold are left out.
 			'text'     => 'Text',
 			'textarea' => 'Textarea',
+			'editor'   => 'Editor',
 			'number'   => 'Number',
 			'date'     => 'Date',
 			'time'     => 'Time',
-			'switcher' => 'Switcher',
 			'select'   => 'Select',
-			'media'    => 'Image / file',
-			'editor'   => 'Editor',
+			'switcher' => 'Switcher',
+			'media'    => 'Media',
 			'icon'     => 'Icon',
 		);
 	}
