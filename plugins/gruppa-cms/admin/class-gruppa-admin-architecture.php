@@ -82,8 +82,14 @@ class Gruppa_Admin_Architecture {
 		<?php
 	}
 
-	/** Right panel: only the menu — every published type and the types under it, with item counts. */
-	private static function nav() {
+	/**
+	 * Right panel: only the menu — every published type and the types under it, with item counts.
+	 * Shown in Architecture and next to every items list (0.32.5).
+	 *
+	 * @param string $current        Slug of the type whose items are open ('' = none).
+	 * @param string $current_parent Slug of its parent in the menu ('' = top level).
+	 */
+	public static function nav( $current = '', $current_parent = '' ) {
 		$tree = Gruppa_Menu::tree( 'publish' );
 		?>
 		<aside class="gruppa-arch-nav" aria-label="Types">
@@ -97,11 +103,11 @@ class Gruppa_Admin_Architecture {
 						list( $t, $kids ) = $node;
 						?>
 						<li>
-							<a href="<?php echo esc_url( self::items_url( $t ) ); ?>"><span class="dashicons <?php echo esc_attr( Gruppa_Menu::icon( $t ) ); ?>" aria-hidden="true"></span><?php echo esc_html( $t->name ); ?><span class="gruppa-arch-nav-n"><?php echo (int) Gruppa_DB::count_items( $t->slug ); ?></span></a>
+							<a href="<?php echo esc_url( self::items_url( $t ) ); ?>"<?php echo $current === $t->slug && '' === $current_parent ? ' class="is-current" aria-current="page"' : ''; ?>><span class="dashicons <?php echo esc_attr( Gruppa_Menu::icon( $t ) ); ?>" aria-hidden="true"></span><?php echo esc_html( $t->name ); ?><span class="gruppa-arch-nav-n"><?php echo (int) Gruppa_DB::count_items( $t->slug ); ?></span></a>
 							<?php if ( $kids ) : ?>
 								<ul>
 									<?php foreach ( $kids as $k ) : ?>
-										<li><a href="<?php echo esc_url( self::items_url( $k, $t->slug ) ); ?>"><span class="dashicons <?php echo esc_attr( Gruppa_Menu::icon( $k ) ); ?>" aria-hidden="true"></span><?php echo esc_html( $k->name ); ?><span class="gruppa-arch-nav-n"><?php echo (int) Gruppa_Menu::counts_under( $k, $t->slug )['all']; ?></span></a></li>
+										<li><a href="<?php echo esc_url( self::items_url( $k, $t->slug ) ); ?>"<?php echo $current === $k->slug && $current_parent === $t->slug ? ' class="is-current" aria-current="page"' : ''; ?>><span class="dashicons <?php echo esc_attr( Gruppa_Menu::icon( $k ) ); ?>" aria-hidden="true"></span><?php echo esc_html( $k->name ); ?><span class="gruppa-arch-nav-n"><?php echo (int) Gruppa_Menu::counts_under( $k, $t->slug )['all']; ?></span></a></li>
 									<?php endforeach; ?>
 								</ul>
 							<?php endif; ?>

@@ -715,3 +715,13 @@
 .gruppa-arch-nav-add{border-top-color:#2A2B36}
 .gruppa-wrap .gruppa-dash-links a strong{color:#2952EA}
 .gruppa-wrap .gruppa-dash-links a:hover strong{color:#0604CD}
+/* ===== 0.32.5 — boxes with a form do not clip dropdowns (Menu icon picker); rounded head instead of overflow ===== */
+.gruppa-wrap .gruppa-boxed:not(.gruppa-box){overflow:visible}
+.gruppa-wrap .gruppa-boxed:not(.gruppa-box) > .gruppa-box-head{border-radius:8px 8px 0 0}
+/* ===== 0.32.5 — Menu panel next to the items list; open type highlighted ===== */
+.gruppa-wrap .gruppa-arch-nav a.is-current{background:#2952EA;color:#ffffff}
+.gruppa-arch-nav a.is-current .dashicons,.gruppa-arch-nav a.is-current .gruppa-arch-nav-n{color:#ffffff}
+.gruppa-items-layout .gruppa-arch-main{min-width:0}
+/* 0.32.5 — items list: Bulk actions, Apply and the count under the list */
+.gruppa-wrap .gruppa-bulk-bar.bottom{margin:24px 0 0}
+.gruppa-items-layout .gruppa-list-filters{margin:0 0 24px}

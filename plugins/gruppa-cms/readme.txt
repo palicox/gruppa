@@ -5,7 +5,7 @@ Plugin URI: https://gruppa.cloud
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.32.4
+Stable tag: 0.32.5
 License: GPLv2 or later
 
 Data layer for WordPress: content types and data types in their own database tables with a field builder, listings, filters and forms, REST API, access rules, Elementor widgets, dynamic tags and Block Bindings.
@@ -23,6 +23,11 @@ Gruppa Tools (samostatné pluginy, spoločné menu Gruppa Tools hneď pod Gruppa
 * Strom menu: settings.menu entity ({ manual: 1, parents: [...] }, bez kľúča = podľa väzieb), poradie = order_index. DB sa v 0.29 nemení (DB 12).
 
 == Changelog ==
+
+= 0.32.5 =
+* Oprava: Menu icon — výber ikon sa znova zobrazuje celý. Box Main Settings (gruppa-boxed) už panel neoreže; hlavička boxu má zaoblené horné rohy.
+* Zoznam záznamov entity má vpravo čierny panel Menu z Architecture. Otvorená entita je v ňom zvýraznená (#2952EA), takže sa medzi entitami dá prepínať priamo zo zoznamu. Hlavička (nadpis, Search, Tutorial, Help) ostáva na celú šírku, panel začína na úrovni zoznamu.
+* Zoznam záznamov: záložky All / Published / Draft a ich linka na celú šírku. Zoznam aj panel Menu začínajú 24 px pod linkou, medzi nimi 24 px. Bulk actions, Apply a počet záznamov sú pod zoznamom.
 
 = 0.32.4 =
 * Hlavička boxu bez linky (oddelí ju levanduľové pozadie). Čierny panel Menu: deliace čiary tmavšie #2A2B36 — jemné, ale viditeľné.

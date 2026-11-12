@@ -310,6 +310,8 @@ class Gruppa_Admin_Items {
 		$counts = null === $allowed ? Gruppa_Items::counts( $type ) : Gruppa_Menu::counts_under( $type, $parent ); // Only the groups shown under this parent.
 		Gruppa_Admin::status_filter( $base, $status, $counts );
 		?>
+		<?php // 0.32.5: tabs and their line full width; the list and the Menu panel start 24px under the line, 24px apart. ?>
+		<div class="gruppa-arch-layout gruppa-items-layout"><div class="gruppa-arch-main">
 
 		<?php if ( $filters ) : ?>
 			<form method="get" class="gruppa-list-filters">
@@ -334,25 +336,6 @@ class Gruppa_Admin_Items {
 
 		<form method="post" class="gruppa-bulk-form gruppa-no-dirty" action="<?php echo esc_url( add_query_arg( array( 'paged' => $paged > 1 ? $paged : null ) + array_filter( array( 'status' => $status, 's' => $s ) ), $base ) ); ?>">
 			<?php wp_nonce_field( 'gruppa_items_bulk_' . $type->slug, 'gruppa_bulk_nonce' ); ?>
-			<div class="tablenav top gruppa-bulk-bar">
-				<select name="bulk_action" aria-label="Bulk actions">
-					<option value="">Bulk actions</option>
-					<option value="publish">Publish</option>
-					<option value="draft">Move to Draft</option>
-					<option value="duplicate">Duplicate</option>
-					<option value="delete">Delete</option>
-					<?php if ( $groups ) : ?>
-						<optgroup label="Move to group">
-							<?php foreach ( $groups as $g ) : ?>
-								<option value="group_<?php echo (int) $g['id']; ?>"><?php echo esc_html( $g['name'] ); ?></option>
-							<?php endforeach; ?>
-						</optgroup>
-					<?php endif; ?>
-				</select>
-				<button type="submit" class="button gruppa-bulk-apply">Apply</button>
-				<span class="gruppa-muted gruppa-bulk-count"><?php echo esc_html( sprintf( '%d items', $total ) ); ?></span>
-			</div>
-
 			<table class="wp-list-table widefat fixed gruppa-table gruppa-items-table">
 				<thead>
 					<tr>
@@ -405,6 +388,24 @@ class Gruppa_Admin_Items {
 				<?php endforeach; ?>
 				</tbody>
 			</table>
+			<div class="tablenav bottom gruppa-bulk-bar">
+				<select name="bulk_action" aria-label="Bulk actions">
+					<option value="">Bulk actions</option>
+					<option value="publish">Publish</option>
+					<option value="draft">Move to Draft</option>
+					<option value="duplicate">Duplicate</option>
+					<option value="delete">Delete</option>
+					<?php if ( $groups ) : ?>
+						<optgroup label="Move to group">
+							<?php foreach ( $groups as $g ) : ?>
+								<option value="group_<?php echo (int) $g['id']; ?>"><?php echo esc_html( $g['name'] ); ?></option>
+							<?php endforeach; ?>
+						</optgroup>
+					<?php endif; ?>
+				</select>
+				<button type="submit" class="button gruppa-bulk-apply">Apply</button>
+				<span class="gruppa-muted gruppa-bulk-count"><?php echo esc_html( sprintf( '%d items', $total ) ); ?></span>
+			</div>
 		</form>
 
 		<?php if ( $pages > 1 ) : ?>
@@ -419,6 +420,9 @@ class Gruppa_Admin_Items {
 				?>
 			</div></div>
 		<?php endif; ?>
+		</div>
+		<?php Gruppa_Admin_Architecture::nav( $type->slug, (string) Gruppa_Menu::request_parent( $type->slug ) ); ?>
+		</div>
 		<?php
 	}
 

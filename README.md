@@ -4,7 +4,7 @@ Ekosystém Gruppa pre WordPress — Gruppa Taxonomy, https://gruppa.cloud
 
 | Balík | Priečinok | Verzia |
 |---|---|---|
-| Gruppa CMS (hlavný plugin) | `plugins/gruppa-cms` | 0.32.4 |
+| Gruppa CMS (hlavný plugin) | `plugins/gruppa-cms` | 0.32.5 |
 | Gruppa Import/Export | `plugins/gruppa-import-export` | 1.3.1 |
 | Gruppa Table Builder | `plugins/gruppa-table-builder` | 0.7.1 |
 | Gruppa SEO Builder | `plugins/gruppa-seo-builder` | 1.4.1 |
