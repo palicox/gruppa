@@ -1,7 +1,9 @@
 /* Gruppa CMS — Listing */
 .gruppa-listing{--gl-cols:3;--gl-gap-x:24px;--gl-gap-y:24px}
-.gruppa-listing-grid{display:grid;grid-template-columns:repeat(var(--gl-cols),minmax(0,1fr));gap:var(--gl-gap-y) var(--gl-gap-x)}
+.gruppa-listing-grid{display:var(--gl-display,grid);flex-wrap:wrap;align-items:stretch;grid-template-columns:repeat(var(--gl-cols),minmax(0,1fr));gap:var(--gl-gap-y) var(--gl-gap-x)}
 .gruppa-listing-item{min-width:0}
+/* Item width Auto / Custom (widget): items in a wrapping row. */
+.gruppa-listing-grid > .gruppa-listing-item{flex:0 0 auto;width:var(--gl-item-w,auto);max-width:100%;box-sizing:border-box}
 .gruppa-listing-grid:empty{display:none}
 /* Shortcode: automatic columns on smaller screens (the widget sets them per device). */
 @media (max-width:1024px){.gruppa-listing--auto .gruppa-listing-grid{grid-template-columns:repeat(min(var(--gl-cols),2),minmax(0,1fr))}}

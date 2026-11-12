@@ -1,4 +1,4 @@
-# Gruppa Tools hub 1.6.2
+# Gruppa Tools hub 1.6.3
 
 Shared folder bundled — identical — in every Gruppa Tools plugin: **Import/Export, Table Builder, SEO Builder,
 Payments, Notify**. Several plugins may ship different versions; only the newest is loaded, once. "Gruppa Tools"

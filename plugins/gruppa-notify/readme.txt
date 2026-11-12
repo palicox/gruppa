@@ -5,7 +5,7 @@ Plugin URI: https://gruppa.cloud
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.4.4
+Stable tag: 1.4.5
 License: GPLv2 or later
 
 Gruppa Tools add-on. Native Web Push notifications without external services: notifications after Gruppa CMS Form Builder, JetFormBuilder and Contact Form 7 forms for chosen users and roles, optional push for new items of a Gruppa CMS entity or JetEngine CCT, log of sent notifications, subscribe button via [gruppa_notify_button] and device list.
@@ -42,6 +42,9 @@ Nastavenia, VAPID kľúče aj zaregistrované zariadenia zostanú (rovnaké opti
 * Filter gruppa_notify/i18n — texty tlačidla na frontende.
 
 == Changelog ==
+
+= 1.4.5 =
+* Hub 1.6.3: všetky polia (inputy aj selecty) rovnaká výška 40 px.
 
 = 1.4.4 =
 * Hub 1.6.2: rovnaká medzera medzi úchytom a checkboxom v zoznamoch.

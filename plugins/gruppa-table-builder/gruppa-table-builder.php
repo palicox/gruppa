@@ -3,7 +3,7 @@
  * Plugin Name:       Gruppa Table Builder
  * Plugin URI:        https://gruppa.cloud
  * Description:       Tables from Gruppa CMS types, JetEngine CCT and WordPress post types with ACF / JetEngine fields, or from the Repeater rows of the current item. Columns with formats, sortable headers, cards on mobile, filters, shortcode and the Elementor widget Gruppa Table. Part of Gruppa Tools; works with or without Gruppa CMS.
- * Version:           0.7.3
+ * Version:           0.7.4
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Author:            Gruppa Taxonomy
@@ -18,7 +18,7 @@ if ( defined( 'GRUPPA_TB_VERSION' ) ) {
 	return; // Another copy is already loaded (e.g. the old Gruppa Tools bundle).
 }
 
-define( 'GRUPPA_TB_VERSION', '0.7.3' );
+define( 'GRUPPA_TB_VERSION', '0.7.4' );
 define( 'GRUPPA_TB_FILE', __FILE__ );
 define( 'GRUPPA_TB_DIR', plugin_dir_path( __FILE__ ) );
 define( 'GRUPPA_TB_URL', plugin_dir_url( __FILE__ ) );

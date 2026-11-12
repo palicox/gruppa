@@ -67,9 +67,9 @@ class Gruppa_Widget_Listing extends \Elementor\Widget_Base {
 		$this->add_control( 'per_page', array(
 			'label'       => 'Items per page',
 			'type'        => \Elementor\Controls_Manager::NUMBER,
-			'min'         => 1,
+			'min'         => 0,
 			'max'         => Gruppa_Listing::MAX_PAGE,
-			'description' => 'Empty = value from the listing.',
+			'description' => 'Empty = value from the listing, 0 = all items.',
 		) );
 		$this->add_responsive_control( 'columns', array(
 			'label'           => 'Columns',
@@ -81,6 +81,28 @@ class Gruppa_Widget_Listing extends \Elementor\Widget_Base {
 			'mobile_default'  => 1,
 			'selectors'       => array( $grid => '--gl-cols: {{VALUE}};' ),
 			'separator'       => 'before',
+		) );
+		$this->add_responsive_control( 'item_width', array(
+			'label'                => 'Item width',
+			'type'                 => \Elementor\Controls_Manager::SELECT,
+			'default'              => 'columns',
+			'options'              => array( 'columns' => 'Columns', 'auto' => 'Auto (width of the content)', 'custom' => 'Custom' ),
+			'selectors_dictionary' => array(
+				'columns' => '--gl-display: grid; --gl-item-w: auto;',
+				'auto'    => '--gl-display: flex; --gl-item-w: auto;',
+				'custom'  => '--gl-display: flex; --gl-item-w: var(--gl-item-cw, 50%);',
+			),
+			'selectors'            => array( $grid => '{{VALUE}}' ),
+			'description'          => 'Columns = the grid above. Auto = each item as wide as its content. Custom = width below.',
+		) );
+		$this->add_responsive_control( 'item_width_custom', array(
+			'label'       => 'Custom width',
+			'type'        => \Elementor\Controls_Manager::SLIDER,
+			'size_units'  => array( '%', 'px', 'rem', 'em' ),
+			'range'       => array( '%' => array( 'min' => 1, 'max' => 100 ), 'px' => array( 'min' => 20, 'max' => 1600 ), 'rem' => array( 'min' => 1, 'max' => 100 ), 'em' => array( 'min' => 1, 'max' => 100 ) ),
+			'default'     => array( 'unit' => '%', 'size' => 50 ),
+			'selectors'   => array( $grid => '--gl-item-cw: {{SIZE}}{{UNIT}};' ),
+			'description' => 'Used when Item width = Custom.',
 		) );
 		$this->add_responsive_control( 'gap_x', array(
 			'label'      => 'Column gap',

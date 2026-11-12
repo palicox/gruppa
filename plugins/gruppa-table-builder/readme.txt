@@ -5,7 +5,7 @@ Plugin URI: https://gruppa.cloud
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.7.3
+Stable tag: 0.7.4
 License: GPLv2 or later
 
 Tables from Gruppa CMS content types, JetEngine CCT and WordPress post types with ACF / JetEngine fields: rows of a Repeater field of the current item or the items of a content type. Columns with formats, sortable headers, mobile cards, Search Filters support, shortcode and Elementor widget Gruppa Table with full styling. Works with or without Gruppa CMS.
@@ -48,6 +48,9 @@ Menu: Gruppa Tools → Table Builder (po Import/Export a Theme Builder). Funguje
 * settings.origin = gruppa | jet | wp (zdroj dát; staré tabuľky bez origin = gruppa). type_slug = slug typu v danom zdroji. Štruktúra tabuľky sa nemení.
 
 == Changelog ==
+
+= 0.7.4 =
+* Hub 1.6.3: všetky polia (inputy aj selecty) rovnaká výška 40 px.
 
 = 0.7.3 =
 * Hub 1.6.2: rovnaká medzera medzi úchytom a checkboxom v zoznamoch.

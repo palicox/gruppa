@@ -1,4 +1,4 @@
-/* Gruppa Tools hub 1.6.2 — copy of the Gruppa CMS 0.33.1 admin.css (used only when Gruppa CMS is not active). */
+/* Gruppa Tools hub 1.6.3 — copy of the Gruppa CMS 0.33.3 admin.css (used only when Gruppa CMS is not active). */
 /* Menu separator */
 #adminmenu a[href="admin.php?page=gruppa-sep"]{pointer-events:none;cursor:default;padding:0!important;height:0;margin:6px 12px;border-top:1px solid rgba(240,246,252,.15)}
 
@@ -770,6 +770,8 @@
 .gruppa-wrap .gruppa-box-head .button{height:24px;min-height:24px;line-height:22px;padding:0 10px}
 .gruppa-wrap .button-link,.gruppa-wrap .button-link:focus{box-shadow:none;outline:0;transition:none}
 .gruppa-wrap input[type=text],.gruppa-wrap input[type=number],.gruppa-wrap input[type=date],.gruppa-wrap input[type=email],.gruppa-wrap input[type=url],.gruppa-wrap input[type=password],.gruppa-wrap input[type=search],.gruppa-wrap input[type=time],.gruppa-wrap input[type=tel],.gruppa-wrap input[type=datetime-local],.gruppa-wrap select{min-height:32px}
+/* 0.33.3 — every field (text inputs and selects) the same 40px height as before */
+.gruppa-wrap input[type=text],.gruppa-wrap input[type=number],.gruppa-wrap input[type=date],.gruppa-wrap input[type=email],.gruppa-wrap input[type=url],.gruppa-wrap input[type=password],.gruppa-wrap input[type=search],.gruppa-wrap input[type=time],.gruppa-wrap input[type=tel],.gruppa-wrap input[type=datetime-local],.gruppa-wrap select{height:40px;min-height:40px;line-height:38px;padding-top:0;padding-bottom:0;box-sizing:border-box}
 .wp-core-ui .gruppa-wrap .wp-editor-tabs .button,.gruppa-wrap .wp-editor-tools .button,.gruppa-wrap .mce-container .button,.gruppa-wrap .quicktags-toolbar .button{height:auto;min-height:0;line-height:inherit;padding:revert;display:inline-block}
 .gruppa-wrap .wp-media-buttons .button{height:32px}
 

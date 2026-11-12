@@ -242,7 +242,7 @@ class Gruppa_Admin_Listings {
 					</tr>
 					<tr>
 						<th><label for="gl-per">Items per page</label></th>
-						<td><input type="number" id="gl-per" name="settings[per_page]" min="1" max="<?php echo (int) Gruppa_Listing::MAX_PAGE; ?>" value="<?php echo (int) $s['per_page']; ?>"></td>
+						<td><input type="number" id="gl-per" name="settings[per_page]" min="0" max="<?php echo (int) Gruppa_Listing::MAX_PAGE; ?>" value="<?php echo (int) $s['per_page']; ?>"><p class="description">0 = all items.</p></td>
 					</tr>
 					<tr id="gl-group-row">
 						<th><label for="gl-group">Group</label></th>

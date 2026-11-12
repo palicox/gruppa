@@ -5,7 +5,7 @@ defined( 'ABSPATH' ) || exit;
  * Listing Builder — a query over one content type + an Elementor template for one item.
  *
  *   Elementor:  widget "Gruppa Listing"
- *   Shortcode:  [gruppa_listing listing="slug" per_page="6" columns="3" pagination="numbers|load_more|none"]
+ *   Shortcode:  [gruppa_listing listing="slug" per_page="6" (0 = all) columns="3" pagination="numbers|load_more|none"]
  *
  * The item template is a hidden post (post type gruppa_listing) edited in Elementor.
  * While an item is rendered, Gruppa dynamic tags with Item = "Current" read that item.
@@ -122,7 +122,7 @@ class Gruppa_Listing {
 		$s    = array(
 			'orderby'    => isset( $raw['orderby'] ) && ( 'rand' === $raw['orderby'] || ( isset( $cols[ $raw['orderby'] ] ) && ! Gruppa_Relations::is_link( $cols[ $raw['orderby'] ][1] ) ) ) ? $raw['orderby'] : 'order_index',
 			'order'      => isset( $raw['order'] ) && 'desc' === $raw['order'] ? 'desc' : 'asc',
-			'per_page'   => max( 1, min( self::MAX_PAGE, isset( $raw['per_page'] ) ? (int) $raw['per_page'] : $d['per_page'] ) ),
+			'per_page'   => max( 0, min( self::MAX_PAGE, isset( $raw['per_page'] ) ? (int) $raw['per_page'] : $d['per_page'] ) ), // 0 = all items
 			'only_mine'     => ! empty( $raw['only_mine'] ),
 			'context_field' => '',
 			'empty_text' => sanitize_text_field( isset( $raw['empty_text'] ) ? $raw['empty_text'] : $d['empty_text'] ),
@@ -270,7 +270,7 @@ class Gruppa_Listing {
 		global $wpdb;
 		$s     = $listing->settings;
 		$args  = wp_parse_args( $args, array( 'page' => 1, 'per_page' => $s['per_page'], 'filters' => array(), 'ctx' => array() ) );
-		$per   = max( 1, min( self::MAX_PAGE, (int) $args['per_page'] ) );
+		$per   = max( 0, min( self::MAX_PAGE, (int) $args['per_page'] ) ); // 0 = all items
 		$page  = max( 1, (int) $args['page'] );
 		$cols  = self::columns( $type );
 		$table = Gruppa_DB::data_table( $type->slug );
@@ -358,7 +358,8 @@ class Gruppa_Listing {
 
 		$total = (int) $wpdb->get_var( "SELECT COUNT(*) FROM `{$table}` WHERE {$where}" ); // phpcs:ignore
 		// $where is already prepared; LIMIT values are plain integers.
-		$rows  = (array) $wpdb->get_results( "SELECT * FROM `{$table}` WHERE {$where} ORDER BY {$order} LIMIT " . (int) $per . ' OFFSET ' . (int) ( ( $page - 1 ) * $per ) ); // phpcs:ignore
+		$limit = $per > 0 ? ' LIMIT ' . (int) $per . ' OFFSET ' . (int) ( ( $page - 1 ) * $per ) : ''; // 0 = all items, no LIMIT.
+		$rows  = (array) $wpdb->get_results( "SELECT * FROM `{$table}` WHERE {$where} ORDER BY {$order}{$limit}" ); // phpcs:ignore
 		return array( Gruppa_Relations::attach( $type, $rows ), $total );
 	}
 
@@ -681,7 +682,8 @@ class Gruppa_Listing {
 		self::$count++;
 		self::$active[ (int) $listing->id ] = true;
 
-		$per   = '' !== (string) $o['per_page'] && (int) $o['per_page'] > 0 ? min( self::MAX_PAGE, (int) $o['per_page'] ) : (int) $listing->settings['per_page'];
+		// Empty = value from the listing, 0 = all items, number = that many.
+		$per   = '' !== trim( (string) $o['per_page'] ) && (int) $o['per_page'] >= 0 ? min( self::MAX_PAGE, (int) $o['per_page'] ) : (int) $listing->settings['per_page'];
 		$param = self::page_param( $listing );
 		$page  = 'numbers' === $o['pagination'] && isset( $_GET[ $param ] ) ? max( 1, absint( $_GET[ $param ] ) ) : 1; // phpcs:ignore
 		$ctx = array( 'post_id' => is_singular() ? (int) get_queried_object_id() : 0 );
@@ -705,7 +707,7 @@ class Gruppa_Listing {
 		$rules = $group ? Gruppa_Filters::rules( $group, $type ) : array();
 
 		list( $rows, $total ) = self::query( $listing, $type, array( 'page' => $page, 'per_page' => $per, 'ctx' => $ctx, 'filters' => $rules ) );
-		$pages = (int) ceil( $total / $per );
+		$pages = $per > 0 ? (int) ceil( $total / $per ) : 1;
 		if ( '' !== (string) $o['filters'] && ! $group && $editor ) {
 			$warn = '<div class="gruppa-listing-message">Filter group not found, not published or for another entity.</div>';
 		}
@@ -758,7 +760,7 @@ class Gruppa_Listing {
 			'permission_callback' => '__return_true',
 			'args'                => array(
 				'page'     => array( 'type' => 'integer', 'default' => 2, 'minimum' => 1 ),
-				'per_page' => array( 'type' => 'integer', 'default' => 0, 'minimum' => 0, 'maximum' => self::MAX_PAGE ),
+				'per_page' => array( 'type' => 'integer', 'default' => -1, 'minimum' => -1, 'maximum' => self::MAX_PAGE ), // -1 = from the listing, 0 = all
 			),
 		) );
 	}
@@ -792,7 +794,7 @@ class Gruppa_Listing {
 		if ( ! $listing || 'publish' !== $listing->status || ! $type || 'publish' !== $type->status ) {
 			return new WP_Error( 'gruppa_listing', __( 'Listing not found.', 'gruppa-cms' ), array( 'status' => 404 ) );
 		}
-		$per   = (int) $request['per_page'] ? (int) $request['per_page'] : (int) $listing->settings['per_page'];
+		$per   = (int) $request['per_page'] >= 0 ? (int) $request['per_page'] : (int) $listing->settings['per_page'];
 		$ctx   = self::request_ctx( $request );
 		$rules = array();
 		if ( $request->get_param( 'group' ) && class_exists( 'Gruppa_Filters' ) ) {
@@ -809,7 +811,7 @@ class Gruppa_Listing {
 			'filters'  => $rules,
 			'ctx'      => $ctx,
 		) );
-		$pages = (int) ceil( $total / max( 1, $per ) );
+		$pages = $per > 0 ? (int) ceil( $total / $per ) : 1;
 		$url   = esc_url_raw( (string) $request->get_param( 'url' ) );
 		$url   = $url && wp_validate_redirect( $url, '' ) ? $url : home_url( '/' );
 		return rest_ensure_response( array(

@@ -5,7 +5,7 @@ Plugin URI: https://gruppa.cloud
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.3
+Stable tag: 1.3.4
 License: GPLv2 or later
 
 CSV and JSON import and export for Gruppa CMS types, SEO Builder, JetEngine CCT and WordPress post types with ACF fields: automatic field mapping, overwrite by ID, author choice, chunked import. Without Gruppa CMS in the Gruppa Tools menu; with Gruppa CMS as Data Tools.
@@ -22,6 +22,9 @@ CSV and JSON import and export for Gruppa CMS types, SEO Builder, JetEngine CCT 
 * Tlačidlo v hlavičke zoznamu záznamov Gruppa CMS cez akciu gruppa_cms/items_header_actions.
 
 == Changelog ==
+
+= 1.3.4 =
+* Hub 1.6.3: všetky polia (inputy aj selecty) rovnaká výška 40 px.
 
 = 1.3.3 =
 * Hub 1.6.2: rovnaká medzera medzi úchytom a checkboxom v zoznamoch.
